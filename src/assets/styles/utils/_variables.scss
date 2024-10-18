@@ -1,0 +1,24 @@
+// Spacing Variables (for both padding and margin)
+$spacing-small: 1rem;
+$spacing-medium: 2rem;
+$spacing-large: 4rem;
+
+// Backdrop Filters Variables
+$blur-normal: 10;
+$blur-strong: 20;
+
+// Dimension Size Variables
+$height-full: 100%;
+$height-half: 50%;
+$width-full: 100%;
+$width-half: 50%;
+
+// Clamp Size Variables
+$min-width: 450px;
+$max-width: 500px;
+$viewport-percentage: 26vw;
+
+// Border Size Variables
+$border-width-zero: none;
+$border-width-small: 0.0625rem; //1px
+$border-width-medium: 0.125rem; //2px

@@ -1,0 +1,49 @@
+%css-reset {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    border: $border-width-zero;
+}
+
+%background-image {
+    @include background-image('https://unsplash.it/1920/1080/?random', no-repeat, center, cover);
+}
+
+%toprow-buttons-container-styles {
+    @include flex(flex, unset, nowrap, center, unset);
+    @include positions(relative);
+
+    width: rem(34);
+    aspect-ratio: 1;
+    margin-inline: $spacing-small;
+
+    vertical-align: middle;
+    z-index: 1;
+}
+
+%toprow-button-styles-before {
+    width: rem(45);
+    height: rem(45);
+    content: '';
+    top: 50%;
+    left: 50%;
+    border: calc($border-width-medium + rem(1)) solid #ccc;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+%sound-bars-styles {
+    width: rem(5);
+    height: calc($height-full - 10%);
+
+    margin-inline: rem(1.5);
+    vertical-align: middle;
+
+    background-color: orange;
+    border-radius: rem(3);
+    transform-origin: bottom;
+    animation: bounce 2.2s linear infinite alternate;
+}

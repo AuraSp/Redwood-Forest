@@ -1,0 +1,100 @@
+@import './utils/variables';
+@import './utils/mixin';
+@import './utils/function';
+@import './utils/placeholder';
+
+@import './utils/colors';
+@import '../fonts/fonts';
+
+.row__top {
+    width: $width-full;
+    padding: addSpacing($spacing-medium, 1) addSpacing($spacing-medium, 1) 0 addSpacing($spacing-medium, 1);
+}
+
+.top__row--sound,
+.top__row--nav {
+    @extend %toprow-buttons-container-styles;
+
+    // Common button styles for both sound and nav buttons
+    button {
+        background: none;
+        height: $height-full;
+        width: $width-full;
+
+        cursor: pointer;
+    }
+
+    &::before {
+        @include positions(absolute);
+        @extend %toprow-button-styles-before;
+    }
+}
+
+.top__row--sound {
+    float: left;
+
+    &::before {
+        clip-path: polygon(0% 50%, 50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .sound-btn span {
+        @include displays(inline-block);
+        @extend %sound-bars-styles;
+        
+        // Staggered animation delays for nth-of-type elements
+        &:nth-of-type(2) {
+            animation-delay: -1s;
+        }
+
+        &:nth-of-type(3) {
+            animation-delay: -2s;
+        }
+
+        // Specific styles for the first and last spans
+        &:first-of-type,
+        &:last-of-type {
+            height: $height-half;
+        }
+    }
+}
+
+@keyframes bounce {
+    10% {
+        transform: scaleY(0.3);
+        /* start by scaling to 30% */
+    }
+
+    30% {
+        transform: scaleY(0.8);
+        /* scale up to 80% */
+    }
+
+    60% {
+        transform: scaleY(0.4);
+        /* scale down to 40% */
+    }
+
+    80% {
+        transform: scaleY(0.75);
+        /* scale up to 75% */
+    }
+
+    100% {
+        transform: scaleY(0.6);
+        /* scale down to 60% */
+    }
+}
+
+.top__row--nav {
+    float: right;
+
+    &::before {
+        clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
+    }
+
+    .nav-btn svg {
+        height: auto;
+        width: $width-full;
+        object-fit: contain;
+    }
+}

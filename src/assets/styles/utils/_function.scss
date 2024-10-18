@@ -1,0 +1,11 @@
+@use 'sass:math';
+
+@function rem($pixel) {
+    // divide $pixel by 16 to return rems
+    @return math.div($pixel, 16)  * 1rem;
+}
+
+@function addSpacing($spacing-value, $add-value) {
+    // add additional $add-value to the $spacing-value 
+    @return $spacing-value + $add-value;
+}

@@ -1,33 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from 'react';
+import TopRow from "./TopRow";
+import MiddleRow from "./MiddleRow";
+import BottomRow from "./BottomRow";
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [screenSize, setScreenSize] = useState<string>('');
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setScreenSize('small');
+      } else if (width >= 768 && width <= 1200) {
+        setScreenSize('medium');
+      } else {
+        setScreenSize('large');
+      }
+    };
+
+    handleResize(); // Initial check
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    const root = document.getElementById('root');
+    if (root) {
+      root.className = screenSize; // Set the class based on screenSize
+    }
+  }, [screenSize]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      {/* TOP CHILD ROW */}
+      <TopRow screenSize={screenSize} />
+
+      {/* MIDDLE CHILD ROW */}
+      <MiddleRow screenSize={screenSize} />
+
+      {/* BOTTOM CHILD ROW */}
+      <BottomRow />
     </>
   )
 }

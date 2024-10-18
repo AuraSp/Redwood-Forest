@@ -1,0 +1,85 @@
+@import './utils/variables';
+@import './utils/mixin';
+@import './utils/function';
+@import './utils/placeholder';
+
+@import './utils/colors';
+@import '../fonts/fonts';
+
+// Global Resets
+* {
+  @extend %css-reset;
+
+  &:after {
+    @extend %css-reset;
+  }
+
+  &:before {
+    @extend %css-reset;
+  }
+}
+
+body,
+html {
+  /* height: 100dvh; */
+  /* dynamic viewport height */
+  width: $width-full;
+  height: $height-full;
+
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @extend %background-image;
+
+  padding: addSpacing($spacing-medium, 2);
+  backdrop-filter: blur(rem($blur-strong));
+}
+
+#root {
+  @extend %background-image;
+  @include flex(flex, column, nowrap, unset, unset);
+  @include positions(relative);
+
+  width: $width-full;
+  height: $height-full;
+
+  z-index: 0;
+
+  &::before {
+    @include positions(absolute);
+
+    content: "";
+    height: $height-full;
+    width: $width-half;
+
+    top: 0;
+    left: 0;
+
+    clip-path: polygon(0px 0px, 65% 0%, 100% 100%, 0% 100%);
+    background: var(--bg-blur-color);
+    backdrop-filter: blur(rem($blur-strong));
+    z-index: -1;
+  }
+}
+
+.row__top {
+  @include flex-basis(0, 0, 10%);
+  order: 1;
+}
+
+.row__middle {
+  @include flex-basis(1, 1, 0); //flex:1
+  order: 2;
+}
+
+.row__bottom {
+  @include flex-basis(0, 0, 40%);
+  order: 3;
+}
+
+.bottom__row--description {
+  @include clamped-width;
+
+  margin-left: addSpacing($spacing-large, 4);
+}

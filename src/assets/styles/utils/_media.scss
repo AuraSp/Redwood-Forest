@@ -1,0 +1,46 @@
+@import './mixin';
+@import './variables';
+
+body {
+  padding: 0;
+}
+
+#root {
+
+  &.small::before, &.medium::before {
+    height: $height-half;
+    width: $width-full;
+
+    top: unset;
+    bottom: 0;
+
+    clip-path: none;
+  }
+}
+
+.row__top {
+
+  &.small {
+    order: 2; // Change order for smaller screens
+    text-align: center;
+    align-content: center;
+    padding: 0;
+
+    .top__row--sound,
+    .top__row--nav {
+      float: none;
+      @include displays(inline-block);
+    }
+  }
+}
+
+.row__middle {
+
+  &.small {
+    order: 1; // Change order for smaller screens
+  }
+}
+
+.row__bottom {
+  @include flex-basis(0, 0, 50%);
+}
