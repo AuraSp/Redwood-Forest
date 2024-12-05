@@ -21,23 +21,23 @@
 
 body,
 html {
-  /* height: 100dvh; */
-  /* dynamic viewport height */
   width: $width-full;
   height: $height-full;
+  min-height: 100svh;
 
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  @extend %background-image;
+  @extend %background;
+  background: var(--body-bg-image, url('src/assets/images/default.png')) no-repeat center center / cover;
 
-  padding: addSpacing($spacing-medium, 2);
+  padding: rem(75) rem(85);
   backdrop-filter: blur(rem($blur-strong));
 }
 
 #root {
-  @extend %background-image;
+  @extend %background;
   @include flex(flex, column, nowrap, unset, unset);
   @include positions(relative);
 
@@ -52,14 +52,29 @@ body {
     content: "";
     height: $height-full;
     width: $width-half;
-
     top: 0;
     left: 0;
 
     clip-path: polygon(0px 0px, 65% 0%, 100% 100%, 0% 100%);
-    background: var(--bg-blur-color);
-    backdrop-filter: blur(rem($blur-strong));
+    background-color: var(--bg-blur-color);
+    // backdrop-filter: blur(rem($blur-strong));
+    backdrop-filter: blur(1.25rem);
+    // background-color: rgba(255, 255, 255, 0.3);
+
     z-index: -1;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--root-bg-image, url('src/assets/images/default.png'));
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: -2;
   }
 }
 
@@ -79,7 +94,7 @@ body {
 }
 
 .bottom__row--description {
-  @include clamped-width;
+  @include clamped-font-width;
 
   margin-left: addSpacing($spacing-large, 4);
 }

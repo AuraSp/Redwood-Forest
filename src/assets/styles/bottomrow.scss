@@ -1,0 +1,88 @@
+@import './utils/function';
+
+
+.row__bottom {
+    overflow: hidden;
+
+    .bottom__row--description {
+        width: clamp(392px, 23vw, 410px);
+        font-weight: 400;
+        font-style: normal;
+        color: #fff;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory; //scroll snapping along the vertical axis
+        height: 100%;
+        scrollbar-width: none;
+        position: relative;
+
+        .svgbox {
+            position: fixed;
+            width:rem(404.8);
+            text-align: center;
+            height: auto;
+            bottom: 10%;
+            transition: transform 1s cubic-bezier(0.25, 1.5, 0.2, 1.8), opacity 300ms linear;
+        }
+
+        svg {
+            width: 2.5rem;
+            height: auto;
+            opacity: 1;
+        }
+    }
+
+    .bottom__row--description .description-top {
+        height: 100%;
+        scroll-snap-align: start; //dictating the point where the scrolling of each child should stop
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+    }
+
+    .bottom__row--description .description-bottom {
+        height: 100%;
+        scroll-snap-align: start; //dictating the point where the scrolling of each child should stop
+        text-align: center;
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: center;
+        // align-items: center;
+
+
+        p {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-size: 22px;
+            font-family: "Fresca", sans-serif;
+        }
+    }
+
+    .bottom__row--description .description-bottom img {
+        width: 60%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 30px;
+    }
+
+    .description-top span {
+        font-size: 35px;
+        font-family: "Righteous", sans-serif;
+    }
+
+    .description-top p {
+        font-size: 22px;
+        font-family: "Fresca", sans-serif;
+        margin-top: 1.5rem;
+    }
+
+    iframe {
+        position: absolute;
+        content: '';
+        right: 4%;
+        bottom: 5%;
+        border-radius: 15px;
+    }
+
+
+}

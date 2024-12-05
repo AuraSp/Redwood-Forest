@@ -1,5 +1,4 @@
-@mixin background-image($image-url, $repeat, $position, $size) {
-    background-image: url($image-url);
+@mixin background($repeat, $position, $size) {
     background-repeat: $repeat;
     background-position: $position;
     background-size: $size;
@@ -17,14 +16,14 @@
     flex: $grow $shrink $basis;
 }
 
-@mixin clamped-width {
+@mixin clamped-font-width {
     width: clamp($min-width, $viewport-percentage, $max-width);
 }
 
-@mixin positions($position){
+@mixin positions($position) {
     position: $position
 }
 
-@mixin displays($display){
+@mixin displays($display) {
     display: $display;
 }

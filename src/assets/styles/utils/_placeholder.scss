@@ -1,3 +1,4 @@
+
 %css-reset {
     padding: 0;
     margin: 0;
@@ -7,15 +8,16 @@
     border: $border-width-zero;
 }
 
-%background-image {
-    @include background-image('https://unsplash.it/1920/1080/?random', no-repeat, center, cover);
+%background {
+    @include background( no-repeat, center, cover);
 }
 
 %toprow-buttons-container-styles {
     @include flex(flex, unset, nowrap, center, unset);
     @include positions(relative);
 
-    width: rem(34);
+
+    width: rem(25);
     aspect-ratio: 1;
     margin-inline: $spacing-small;
 
@@ -24,8 +26,10 @@
 }
 
 %toprow-button-styles-before {
-    width: rem(45);
-    height: rem(45);
+    // width: rem(45);
+    // height: rem(45);
+    width: rem(40);
+    height: rem(40);
     content: '';
     top: 50%;
     left: 50%;
@@ -36,14 +40,20 @@
 }
 
 %sound-bars-styles {
-    width: rem(5);
+    width: rem(4.8);
     height: calc($height-full - 10%);
 
     margin-inline: rem(1.5);
     vertical-align: middle;
 
-    background-color: orange;
+    background-color: #ffc190;
     border-radius: rem(3);
     transform-origin: bottom;
     animation: bounce 2.2s linear infinite alternate;
+}
+
+%svg-icon-styles {
+    height: auto;
+    width: $width-full;
+    object-fit: contain;
 }

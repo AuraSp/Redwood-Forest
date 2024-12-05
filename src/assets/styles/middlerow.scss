@@ -1,0 +1,233 @@
+@import './utils/variables';
+@import './utils/mixin';
+@import './utils/function';
+@import './utils/placeholder';
+
+@import './utils/colors';
+@import '../fonts/fonts';
+
+.row__middle {
+    @include flex(flex, row, nowrap, unset, unset);
+    @include positions(relative);
+
+    .middle__row--loader,
+    .middle__row--social-links {
+        width: rem(75);
+    }
+
+    .middle__row--loader {
+        height: 100%;
+        text-align: center;
+        padding: 3em 0 0 0;
+
+        .loader-line {
+            display: inline-block;
+            white-space: nowrap;
+            position: relative;
+            background-color: #1b3654;
+            height: 260px;
+            width: 6px;
+            border-radius: 20px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                background-color: #ffc190;
+                width: 6px;
+                border-radius: 20px;
+                transform: translate(0%, 0%);
+                transition: all 1s linear;
+            }
+        }
+
+        span {
+            display: block;
+            transform: rotate(-90deg);
+            font-size: 14px;
+            color: #ffc190;
+            font-family: "Righteous", sans-serif;
+        }
+    }
+
+    .middle__row--social-links {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: rem(45);
+        padding: 1rem 2.5rem 0 0;
+
+        svg {
+            width: 25px;
+            height: auto;
+            object-fit: cover;
+            color: #1b3654;
+            transition: color 1s linear;
+        }
+
+        &[data-title="mount peak"] {
+            svg {
+                color: #ffc190;
+            }
+        }
+
+        &[data-title="two ways"] {
+            svg {
+                color: #ffc190;
+            }
+        }
+    }
+
+
+    .middle__row--title {
+        // @include flex-basis(0, 0, 90%);
+        flex: 1;
+        overflow: hidden;
+        text-align: center;
+        mix-blend-mode: plus-lighter;
+
+        .title {
+            font-size: 135px;
+            font-family: "Righteous", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            // transform: translate(-50%, 50%);
+        }
+
+        .title-top {
+            // display: block;
+            // width: 100%;
+            // height: 100%;
+            transform: translate(-20%, 20%);
+            // transition: transform 1s linear;
+
+            color: transparent;
+            position: relative;
+            display: block;
+            z-index: 0;
+            /* for clip path to work */
+        }
+
+        .title-top::before {
+            position: absolute;
+            content: '';
+            width: 175px;
+            // height: 200px;
+            aspect-ratio: 1;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            // transform: translate(-50%, -50%);
+            transition: clip-path 500ms cubic-bezier(.18, .89, .32, 1.28);
+
+        }
+
+        .title-bottom {
+            color: #fff;
+            display: block;
+
+            transform: translate(-4%, 10%);
+        }
+
+    }
+
+    .middle__row--loader[data-title="fog belt"] {
+        .loader-line {
+
+            &::before {
+                height: 25%;
+            }
+        }
+    }
+
+    .middle__row--loader[data-title="mount peak"] {
+        .loader-line {
+
+            &::before {
+                height: 50%;
+            }
+        }
+    }
+
+    .middle__row--loader[data-title="two ways"] {
+        .loader-line {
+
+            &::before {
+                height: 75%;
+            }
+        }
+    }
+
+    .middle__row--loader[data-title="tallest tree"] {
+        .loader-line {
+
+            &::before {
+                height: 100%;
+            }
+        }
+    }
+
+    .middle__row--title[data-title="fog belt"] {
+        background: url("../images/fog belt/fog_belt.png") no-repeat -150px top / cover;
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        .title-top::before {
+            clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 75% 100%, 0% 100%);
+            transform: translate(-35%, -5%);
+        }
+    }
+
+    .middle__row--title[data-title="mount peak"] {
+        background: url("../images/mountain peak/mountain_peak.png") no-repeat 100% / cover;
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        .title-top {
+
+            &:before {
+                clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 70% 100%, 0% 100%);
+                // top: 46%;
+                // left: 39%;
+                transform: translate(-20%, -10%);
+            }
+
+            &:after {
+                content: 'ain';
+                position: absolute;
+                top: 0;
+                background: none;
+                -webkit-background-clip: unset;
+                background-clip: unset;
+                mix-blend-mode: unset;
+                color: #fff;
+            }
+        }
+    }
+
+    .middle__row--title[data-title="two ways"] {
+        background: url("../images/two ways/two_ways.png") no-repeat -500px top / cover;
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        .title-top::before {
+            clip-path: polygon(0% 0%, 70% 0%, 90% 70%, 100% 100%, 0% 100%);
+            transform: translate(-40%, 10%);
+        }
+    }
+
+    .middle__row--title[data-title="tallest tree"] {
+        background: url("../images/tallest tree/tallest_tree.png") no-repeat -400px -100px / cover;
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        .title-top::before {
+            clip-path: polygon(0% 0%, 100% 0%, 95% 10%, 75% 100%, 0% 100%);
+            transform: translate(-10%, -10%);
+            // left: 40%;
+            // top: 45%;
+        }
+    }
+}

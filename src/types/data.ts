@@ -3,6 +3,6 @@ export interface Data {
     title: string;
     description: string;
     coordinates: string;
-    bgimg: string;
-    descriptionimg: string;
+    bgImg: string;
+    descriptionImg: string;
 }

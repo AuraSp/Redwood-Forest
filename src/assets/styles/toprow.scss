@@ -8,7 +8,8 @@
 
 .row__top {
     width: $width-full;
-    padding: addSpacing($spacing-medium, 1) addSpacing($spacing-medium, 1) 0 addSpacing($spacing-medium, 1);
+    // padding: addSpacing($spacing-medium, 1) addSpacing($spacing-medium, 1) 0 addSpacing($spacing-medium, 1);
+    padding: 2rem 2rem 0rem .5rem;
 }
 
 .top__row--sound,
@@ -17,43 +18,67 @@
 
     // Common button styles for both sound and nav buttons
     button {
-        background: none;
+        @include positions(relative);
         height: $height-full;
         width: $width-full;
 
+        background: none;
+        vertical-align: middle;
         cursor: pointer;
     }
 
+    // Common pseudo styles for both sound and nav buttons
     &::before {
         @include positions(absolute);
         @extend %toprow-button-styles-before;
+    }
+
+    // Common button svg styles for both option and nav buttons
+    button svg {
+        @extend %svg-icon-styles
     }
 }
 
 .top__row--sound {
     float: left;
 
+
     &::before {
         clip-path: polygon(0% 50%, 50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%);
     }
 
-    .sound-btn span {
-        @include displays(inline-block);
-        @extend %sound-bars-styles;
-        
-        // Staggered animation delays for nth-of-type elements
-        &:nth-of-type(2) {
-            animation-delay: -1s;
+    .sound-btn {
+
+
+        span {
+            @include displays(inline-block);
+            @extend %sound-bars-styles;
+
+            // Staggered animation delays for nth-of-type elements
+            &:nth-of-type(2) {
+                animation-delay: -1s;
+            }
+
+            &:nth-of-type(3) {
+                animation-delay: -2s;
+            }
+
+            // Specific styles for the first and last spans
+            &:first-of-type,
+            &:last-of-type {
+                height: $height-half;
+            }
         }
 
-        &:nth-of-type(3) {
-            animation-delay: -2s;
+        &.paused span {
+            animation: none;
         }
+    }
 
-        // Specific styles for the first and last spans
-        &:first-of-type,
-        &:last-of-type {
-            height: $height-half;
+    .option-btn {
+        svg {
+            color: #ffc190;
+            filter: contrast(.8);
         }
     }
 }
@@ -92,9 +117,8 @@
         clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
     }
 
-    .nav-btn svg {
-        height: auto;
-        width: $width-full;
-        object-fit: contain;
+    svg {
+        color: #ffc190;
+        filter: contrast(.8);
     }
 }

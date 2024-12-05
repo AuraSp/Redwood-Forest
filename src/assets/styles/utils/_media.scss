@@ -1,46 +1,313 @@
 @import './mixin';
 @import './variables';
+@import './function';
 
 body {
-  padding: 0;
+
+  &.small,
+  &.medium {
+    padding: 0;
+    backdrop-filter: none;
+  }
+
 }
 
 #root {
 
-  &.small::before, &.medium::before {
-    height: $height-half;
-    width: $width-full;
+  &.small,
+  &.medium {
 
-    top: unset;
-    bottom: 0;
+    &:before {
+      height: $height-half;
+      width: $width-full;
 
-    clip-path: none;
-  }
-}
+      top: unset;
+      bottom: 0;
 
-.row__top {
+      clip-path: none;
+    }
 
-  &.small {
-    order: 2; // Change order for smaller screens
-    text-align: center;
-    align-content: center;
-    padding: 0;
+    // &:after {
+    //   background-position-y: -100px;
+    // }
 
-    .top__row--sound,
-    .top__row--nav {
-      float: none;
-      @include displays(inline-block);
+    &[root-bg-position='fog belt'],
+    &[root-bg-position='mount peak'],
+    &[root-bg-position='tallest tree'] {
+      &:after {
+        background-position-x: right;
+      }
+    }
+
+    &[root-bg-position='two ways'] {
+      &:after {
+        background-position-x: center;
+      }
+    }
+
+    &[root-bg-position='fog belt'],
+    &[root-bg-position='tallest tree'] {
+      &:after {
+        transform: scaleX(-1);
+      }
     }
   }
-}
 
-.row__middle {
+  // top row section
+  .row__top {
 
-  &.small {
-    order: 1; // Change order for smaller screens
+    &.small {
+      order: 2; // Change order for smaller screens
+      text-align: center;
+      align-content: center;
+      padding: 0;
+
+      .top__row--sound,
+      .top__row--nav {
+        float: none;
+        @include displays(inline-block);
+      }
+    }
   }
-}
 
-.row__bottom {
-  @include flex-basis(0, 0, 50%);
+  // middle row section
+  .row__middle {
+    position: static;
+
+    //for both sizes
+    &.small,
+    &.medium {
+      @include flex-basis(0, 0, 40%);
+
+      .middle__row--title {
+        text-align: start;
+        mix-blend-mode: normal;
+        background: none;
+
+        .title {
+          display: block;
+          height: fit-content;
+          width: fit-content;
+          left: 0;
+          font-size: 20px;
+          text-transform: capitalize;
+          transition: none;
+
+          &.title-top {
+
+            &:before {
+              width: 25px;
+              border-radius: 0;
+              height: 0;
+              border: 1.5px solid #1B3654;
+              -webkit-clip-path: none;
+              clip-path: none;
+              transform: none;
+            }
+          }
+
+          &.title-bottom {
+            position: relative;
+            // top: 25%;
+            transform: rotate(-90deg);
+          }
+        }
+      }
+
+      .middle__row--loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5%;
+        padding: 0;
+        text-align: start;
+        height: 100%;
+
+        .loader-line {
+          height: 100%;
+          border-radius: 0;
+          display: block;
+
+          &:before {
+            border-radius: 0;
+          }
+        }
+
+        span {
+          display: none
+        }
+      }
+
+
+      .middle__row--title[data-title='fog belt'],
+      .middle__row--title[data-title='two ways'] {
+
+        .title-top {
+          color: #1B3654;
+          top: 50%;
+          transform: translate(30%, 0%) rotate(-90deg);
+
+
+          &:before {
+            top: 50%;
+            left: -100%;
+          }
+        }
+
+        .title-bottom {
+          color: #1B3654;
+          top: 25%;
+          transform: translate(25%, 0%) rotate(-90deg);
+        }
+      }
+
+      .middle__row--title[data-title='mount peak'],
+      .middle__row--title[data-title='tallest tree'] {
+        .title-top {
+          color: #1B3654;
+          top: 50%;
+          transform: translate(0%, 40%) rotate(-90deg);
+
+
+          &:before {
+            top: 50%;
+            left: -55%;
+          }
+
+          &:after {
+            text-transform: lowercase;
+            color: #1B3654;
+          }
+        }
+
+        .title-bottom {
+          color: #1B3654;
+          top: 15%;
+          transform: translate(15%, 0%) rotate(-90deg);
+        }
+      }
+
+      .middle__row--title[data-title='two ways'] {
+
+        .title-top {
+          color: #ffc190;
+
+          &:before {
+            border-color: #ffc190;
+          }
+        }
+
+        .title-bottom {
+          color: #ffc190;
+          transform: translate(10%, 0%) rotate(-90deg);
+        }
+      }
+
+      .middle__row--title[data-title='tallest tree'] {
+
+        .title-bottom {
+          top: 25%;
+          transform: translate(25%, 0%) rotate(-90deg);
+        }
+      }
+    }
+
+    //for small sizes only
+    &.small {
+      order: 1; // Change order for smaller screens
+
+      .middle__row--social-links {
+        padding: 0;
+
+        &[data-title='tallest tree'] {
+          svg{
+            color: #ffc190;
+          }
+        }
+      }
+    }
+
+    //for medium size only
+    &.medium {
+      .middle__row--social-links {
+        padding: 0 2.5rem 0 0;
+      }
+    }
+  }
+
+  // bottom row section
+  .row__bottom {
+
+    &.small,
+    &.medium {
+      @include flex-basis(1, 1, 50%);
+
+      .bottom__row--description {
+        height: 100%;
+      }
+
+      .description-top {
+        span {
+          margin-top: 2.5rem;
+          display: inline-block;
+        }
+      }
+
+      .description-bottom {
+        img {
+          margin-top: 2.5rem;
+        }
+      }
+
+      span {
+        font-size: 40px;
+      }
+
+      p {
+        font-size: 24px;
+      }
+    }
+
+    &.medium {
+      iframe {
+        transform: translateY(-50%);
+      }
+    }
+
+    &.small {
+
+      iframe {
+        display: none;
+      }
+
+      .bottom__row--description {
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .description-top {
+        span {
+          display: inline-block;
+        }
+      }
+
+      p {
+        font-size: 22px;
+        width: calc(100% - 10%);
+        display: inline-block;
+      }
+
+      .svgbox {
+        left: 0;
+        width: 100%;
+
+
+        svg {
+          width: 2.5rem;
+        }
+      }
+    }
+
+
+  }
 }
