@@ -6,4 +6,5 @@ export default defineConfig({
   build: {
   },
   plugins: [ svgr(), react()],
+  base: '/Redwood-Forest/',
 });
