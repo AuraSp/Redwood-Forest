@@ -1,4 +1,3 @@
-import React from 'react';
 import { Data } from './types/data';
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 

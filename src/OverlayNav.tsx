@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { contentData } from './data/data';
 import { FaLocationDot } from "react-icons/fa6";
 import { Data } from './types/data';
-import Map from './assets/images/map/map.svg?raw';
+import Map from '/images/map/map.svg?raw'
 
 import './assets/styles/overlays.scss';
 

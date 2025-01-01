@@ -38,6 +38,7 @@ function App() {
     }
   };
 
+  console.log(chosenContent.bgImg)
   useEffect(() => {
     const root = document.getElementById('root');
     const body = document.body;
