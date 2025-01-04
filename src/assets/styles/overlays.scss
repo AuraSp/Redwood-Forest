@@ -1,5 +1,5 @@
-@import './utils/function';
-@import '../fonts/fonts';
+@import "./utils/function";
+@import "../fonts/fonts";
 
 .overlay {
     // background-color: red;
@@ -15,7 +15,6 @@
     display: flex;
     overflow: hidden;
     padding: rem(75) rem(85);
-
 }
 
 .overlay__left-side {
@@ -25,20 +24,17 @@
     align-content: center;
 }
 
-
 .overlay__right-side {
     // padding: rem(50) rem(50);
     position: relative;
     flex: 1;
     height: 100%;
 
-
-
     align-self: center;
     text-align: center;
 }
 
-.overlay__right-side>div {
+.overlay__right-side > div {
     height: 100%;
     display: inline-block;
     position: relative;
@@ -48,18 +44,18 @@
     position: absolute;
     width: 20px;
     height: 20px;
-    background-color: #FF6F00;
+    background-color: #ff6f00;
     border-radius: 50%;
 }
 
 .marker::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 100%;
     left: 50%;
     width: 3px;
     height: 20px;
-    background-color: #FF6F00;
+    background-color: #ff6f00;
     transform: translate(-50%, -50%);
 }
 
@@ -85,13 +81,18 @@
     font-size: 40px;
     font-family: "Righteous", sans-serif;
     padding-left: 200px;
+    margin-bottom: 5rem;
+    display: inline-block;
 }
 
 .overlay__left-side .map-description {
-    margin-top: 5rem;
     width: fit-content;
     padding-left: 200px;
-    text-transform: capitalize;
+    height: 250px; //rem(250)
+
+    div {
+        text-transform: capitalize;
+    }
 }
 
 .overlay__left-side .map-description div:first-of-type {
@@ -105,8 +106,8 @@
     svg {
         font-size: 2rem;
         vertical-align: middle;
-        margin-right: .5rem;
-        color: #FF6F00;
+        margin-right: 0.5rem;
+        color: #ff6f00;
     }
 }
 
@@ -121,12 +122,9 @@ svg {
 }
 
 .overlay {
-
-
     &.small {
         flex-direction: column-reverse;
         padding: 0;
-
 
         .prompt,
         .button {
@@ -159,7 +157,7 @@ svg {
             &:before {
                 display: block;
                 position: absolute;
-                content: '';
+                content: "";
                 width: 25px;
                 border-radius: 0;
                 top: 50%;
@@ -202,19 +200,19 @@ svg {
                     border-radius: 50%;
                     background-repeat: no-repeat;
                     background-size: cover;
-                    margin: 0 .5rem;
+                    margin: 0 0.5rem;
 
                     // pointer-events: none;
                 }
 
                 button.hovered {
-                    border: 1px solid #FF6F00;
+                    border: 1px solid #ff6f00;
                 }
             }
         }
 
         .map-description {
-            padding: 0 .5rem 0 .5rem;
+            padding: 0 0.5rem 0 0.5rem;
             margin: 0;
             height: 100%;
             margin-top: 4rem;

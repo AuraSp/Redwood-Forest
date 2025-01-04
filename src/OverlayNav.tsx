@@ -103,19 +103,15 @@ function OverlayNav({ onClose, screenSize }: OverlayNavProps) {
                 <span className='prompt'>Choose location</span>
 
                 <div className='map-description'>
-                    {hoveredContent ? (
-                        <>
-                            <div>{hoveredContent.title}</div>
-                            <div><FaLocationDot /><span>{hoveredContent.coordinates}</span></div>
-                            <p>{hoveredContent.description}</p>
-                        </>
-                    ) : (
-                        <>
-                            <div>Fog Belt</div>
-                            <div><FaLocationDot /><span>{contentData[0].coordinates}</span></div>
-                            <p>{contentData[0].description}</p>
-                        </>
-                    )}
+                    <div>
+                        {hoveredContent ? (
+                            hoveredContent.title.toLowerCase().startsWith("mount")
+                                ? hoveredContent.title.replace("mount", "mountain")  // Modifying title if it starts with "mount"
+                                : hoveredContent.title
+                        ) : "Fog Belt"}  {/* Default title */}
+                    </div>
+                    <div><FaLocationDot /><span>{hoveredContent?.coordinates || contentData[0].coordinates}</span></div>
+                    <p>{hoveredContent?.description || contentData[0].description}</p>
                 </div>
             </div>
 
