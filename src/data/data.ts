@@ -4,7 +4,7 @@ export const contentData: Data[] = [
     {
         id: 1,
         title: 'fog belt',
-        description: 'The Coast Redwood grows only within the summer fog belt of California and southwestern Oregon. There are three small groves in Oregon; the others occur along the coast of California',
+        description: 'The Coast Redwood grows only within the summer fog belt of California and southwestern Oregon. There are three small groves in Oregon, the others occur along the coast of California',
         coordinates: '40.1218° N,123.8821° W',
         bgImg: new URL('/images/fog belt/fog_belt.png', import.meta.url).href,
         descriptionImg: new URL('/images/fog belt/fog_belt2.png', import.meta.url).href,

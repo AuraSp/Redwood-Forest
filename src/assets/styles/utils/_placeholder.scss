@@ -22,12 +22,9 @@
     margin-inline: $spacing-small;
 
     vertical-align: middle;
-    z-index: 1;
 }
 
 %toprow-button-styles-before {
-    // width: rem(45);
-    // height: rem(45);
     width: rem(40);
     height: rem(40);
     content: '';
@@ -46,9 +43,9 @@
     margin-inline: rem(1.5);
     vertical-align: middle;
 
-    background-color: #ffc190;
     border-radius: rem(3);
     transform-origin: bottom;
+    transition: all 1s ease-in-out;
     animation: bounce 2.2s linear infinite alternate;
 }
 

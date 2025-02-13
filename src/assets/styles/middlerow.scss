@@ -66,6 +66,8 @@
             object-fit: cover;
             color: #1b3654;
             transition: color 1s linear;
+            cursor: pointer;
+            color-scheme: light dark;
         }
 
         &[data-title="mount peak"] {

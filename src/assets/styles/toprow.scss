@@ -53,6 +53,7 @@
         span {
             @include displays(inline-block);
             @extend %sound-bars-styles;
+            background-color: #ffc190;
 
             // Staggered animation delays for nth-of-type elements
             &:nth-of-type(2) {
@@ -71,7 +72,7 @@
         }
 
         &.paused span {
-            animation: none;
+            background-color: #1b3654;
         }
     }
 

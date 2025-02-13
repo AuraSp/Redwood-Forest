@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import TopRow from "./TopRow";
 import MiddleRow from "./MiddleRow";
 import BottomRow from "./BottomRow";
+import Fog from "./Fog";
 import { contentData } from "./data/data";
 import { Data } from './types/data';
+
 // define the union type for screen sizes
 type ScreenSize = 'small' | 'medium' | 'large';
 
 function App() {
   const [screenSize, setScreenSize] = useState<ScreenSize>('small');
   const [chosenContent, setChosenContent] = useState<Data>(contentData[0]);
+  const [progress, setProgress] = useState<number>(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -23,7 +26,7 @@ function App() {
       }
     };
 
-    handleResize(); // Initial check
+    handleResize();
 
     window.addEventListener('resize', handleResize);
     return () => {
@@ -34,11 +37,11 @@ function App() {
   const handleContentChoose = (content: Data | undefined) => {
     if (content) {
       setChosenContent(content);
-      console.log(content)
-    }
+    } else {
+      console.error('No content selected');
+  }
   };
 
-  console.log(chosenContent.bgImg)
   useEffect(() => {
     const root = document.getElementById('root');
     const body = document.body;
@@ -52,28 +55,20 @@ function App() {
     }
   }, [screenSize, chosenContent]);
 
-  // const [progress, setProgress] = useState(0);
-  // useEffect(() => {
-  //   let w = 0;
-  //   const interval = setInterval(() => {
-  //     if (w < 100) {
-  //       w += 1; // Increment progress
-  //       setProgress(w);
-  //     } else {
-  //       clearInterval(interval); // Clear the interval once complete
-  //     }
-  //   }, 20);
-
-  //   return () => clearInterval(interval); // Cleanup on unmount
-  // }, []);
 
   return (
     <>
-      {/* <div className='loader-box'>
-        <span id='loader'>{progress}%</span>
-      </div> */}
+       <div className='preloader' style={{
+        background: `rgba(37, 37, 37, ${(100 - progress) / 100})`,
+        "--opacity": progress === 100 ? 0 : 1,
+      } as React.CSSProperties}>
+        <div className="line" style={{
+          "--height": `${progress}%`, 
+        } as React.CSSProperties}></div>
+        <span>{progress}%</span>
+      </div >
 
-
+      <Fog setProgress={setProgress} progress={progress} /> 
       {/* TOP CHILD ROW */}
       <TopRow onContentChoose={handleContentChoose} screenSize={screenSize} />
 

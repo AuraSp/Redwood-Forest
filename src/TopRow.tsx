@@ -15,7 +15,7 @@ type TopRowProps = {
 function TopRow({ screenSize, onContentChoose }: TopRowProps) {
 
     const audioRef = useRef<HTMLAudioElement | null>(null);
-    const [isPlaying, setIsPlaying] = useState<boolean>(true);
+    const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
     const [overlayNavVisible, setOverlayNavVisible] = useState(false);
     const [overlayPanelVisible, setOverlayPanelVisible] = useState(false);
@@ -23,13 +23,15 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
     const openNavOverlay = () => setOverlayNavVisible(true), openPanelOverlay = () => setOverlayPanelVisible(true);
     const closeNavOverlay = () => setOverlayNavVisible(false), closePanelOverlay = () => setOverlayPanelVisible(false);
 
-    const handleContentSelect = (content: Data | undefined) => {
+    const handleContentSelect = (content: Data | null) => {
         if (content) onContentChoose(content);
         closeNavOverlay();
+        console.log(content)
     };
 
     const toggleTrack = () => {
         if (audioRef.current) {
+            audioRef.current.volume = 0.5;
             if (isPlaying) {
                 // Pause the audio if it is currently playing
                 audioRef.current.pause();
@@ -51,7 +53,7 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
             {['large', 'medium'].includes(screenSize) ? (
                 <>
                     <div className="top__row--sound">
-                        <button className={`sound-btn ${isPlaying ? '' : 'paused'}`} onClick={toggleTrack}>
+                        <button className={`sound-btn ${isPlaying ? 'paused' : ''}`} onClick={toggleTrack}>
                             {/* live sound btn */}
                             <span></span>
                             <span></span>
@@ -59,7 +61,7 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
                         </button>
                     </div>
                     {/* audio element */}
-                    <audio ref={audioRef} src='' />
+                    <audio ref={audioRef} src={new URL('/audio/ambient.mp3', import.meta.url).href} />
                 </>
             ) : (
                 <>

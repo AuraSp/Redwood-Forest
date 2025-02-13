@@ -1,4 +1,4 @@
-import { CgMouse } from "react-icons/cg";
+import { CgMouse, CgScrollV } from "react-icons/cg";
 import './assets/styles/bottomrow.scss';
 import { useRef } from "react";
 import { Data } from './types/data';
@@ -31,7 +31,7 @@ function BottomRow({ screenSize, chosenContent }: BottomRowProps) {
             opacity
           }}
         >
-          <CgMouse />
+          {!["medium", "small"].includes(screenSize) ? <CgMouse /> : <CgScrollV />}
         </motion.div>
         <div className='description-top'>
           <span>Lorem ipsum</span>
