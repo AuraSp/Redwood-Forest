@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { contentData } from './data/data';
 import { FaLocationDot } from "react-icons/fa6";
-import { Data } from './types/data';
+import { Data, OverlayNavProps } from './types/types';
 import Map from '/images/map/nav.svg?raw'
 
 import './assets/styles/overlays.scss';
 
-type OverlayNavProps = {
-    onClose: (content: Data | null) => void;
-    screenSize: string;
-}
 
 function OverlayNav({ onClose, screenSize }: OverlayNavProps) {
     const svgContainerRef = useRef<HTMLDivElement | null>(null);

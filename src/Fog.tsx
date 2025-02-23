@@ -1,7 +1,8 @@
-import { useEffect, useRef, Dispatch, SetStateAction } from 'react';
+import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
-import vertexShader from './vertexShader.glsl';
-import fragmentShader from './fragmentShader.glsl';
+import vertexShader from './data/vertexShader.glsl';
+import fragmentShader from './data/fragmentShader.glsl';
+import { FogProps, FogUniforms } from './types/types';
 
 function debounce(func: (...args: any[]) => void, delay: number) {
   // timeoutId stores a reference to the setTimeout function
@@ -13,24 +14,6 @@ function debounce(func: (...args: any[]) => void, delay: number) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => func(...args), delay);
   };
-}
-
-interface FogProps {
-  progress: number;
-  setProgress: Dispatch<SetStateAction<number>>;
-}
-
-interface FogUniforms {
-  // allows any additional uniforms to be dynamically added
-  //the object conform to the THREE.IUniform<T> structure
-  //enforces type safety
-  [key: string]: THREE.IUniform<any>;
-  progress: THREE.IUniform<number>;
-  time: THREE.IUniform<number>;
-  resolution: THREE.IUniform<THREE.Vector2>;
-  startTexture: THREE.IUniform<THREE.Texture>;
-  _Vignette: THREE.IUniform<number>;
-  _Grain: THREE.IUniform<number>;
 }
 
 

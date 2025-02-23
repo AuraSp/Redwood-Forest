@@ -4,10 +4,7 @@ import MiddleRow from "./MiddleRow";
 import BottomRow from "./BottomRow";
 import Fog from "./Fog";
 import { contentData } from "./data/data";
-import { Data } from './types/data';
-
-// define the union type for screen sizes
-type ScreenSize = 'small' | 'medium' | 'large';
+import { ScreenSize, Data } from './types/types';
 
 function App() {
   const [screenSize, setScreenSize] = useState<ScreenSize>('small');
@@ -58,7 +55,7 @@ function App() {
 
   return (
     <>
-      {/* <div className='preloader' style={{
+      <div className='preloader' style={{
         background: `rgba(37, 37, 37, ${(100 - progress) / 100})`,
         "--opacity": progress === 100 ? 0 : 1,
       } as React.CSSProperties}>
@@ -66,9 +63,9 @@ function App() {
           "--height": `${progress}%`, 
         } as React.CSSProperties}></div>
         <span>{progress}%</span>
-      </div > */}
+      </div >
 
-      {/* <Fog setProgress={setProgress} progress={progress} />  */}
+      <Fog setProgress={setProgress} progress={progress} /> 
       {/* TOP CHILD ROW */}
       <TopRow onContentChoose={handleContentChoose} screenSize={screenSize} />
 

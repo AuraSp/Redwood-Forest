@@ -1,13 +1,8 @@
-import { Data } from './types/data';
+import { MiddleRowProps } from './types/types';
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 import './assets/styles/middlerow.scss';
 
-
-type MiddleRowProps = {
-    screenSize: string;
-    chosenContent: Data;
-}
 
 function MiddleRow({ screenSize, chosenContent }: MiddleRowProps) {
 

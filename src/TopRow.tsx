@@ -1,16 +1,12 @@
 import { useState, useRef } from 'react';
 import { FaLocationDot } from "react-icons/fa6";
 import { PiGearFill } from "react-icons/pi";
-import { Data } from './types/data';
+import {  Data, TopRowProps } from './types/types';
 
 import './assets/styles/toprow.scss';
 import OverlayNav from './OverlayNav';
 import OverlayPanel from './OverlayPanel';
 
-type TopRowProps = {
-    screenSize: string;
-    onContentChoose: (content: Data) => void;
-}
 
 function TopRow({ screenSize, onContentChoose }: TopRowProps) {
 
