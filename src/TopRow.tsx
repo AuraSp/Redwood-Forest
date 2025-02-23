@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import { FaLocationDot } from "react-icons/fa6";
 import { PiGearFill } from "react-icons/pi";
-import {  Data, TopRowProps } from './types/types';
+import {  Data, TopRowProps } from './type/types';
 
 import './assets/styles/toprow.scss';
 import OverlayNav from './OverlayNav';

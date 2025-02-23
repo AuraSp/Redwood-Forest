@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import vertexShader from './data/vertexShader.glsl';
 import fragmentShader from './data/fragmentShader.glsl';
-import { FogProps, FogUniforms } from './types/types';
+import { FogProps, FogUniforms } from './type/types';
 
 function debounce(func: (...args: any[]) => void, delay: number) {
   // timeoutId stores a reference to the setTimeout function

@@ -1,4 +1,4 @@
-import { MiddleRowProps } from './types/types';
+import { type MiddleRowProps } from './type/types';
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 import './assets/styles/middlerow.scss';

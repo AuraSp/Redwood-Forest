@@ -4,7 +4,7 @@ import MiddleRow from "./MiddleRow";
 import BottomRow from "./BottomRow";
 import Fog from "./Fog";
 import { contentData } from "./data/data";
-import { ScreenSize, Data } from './types/types';
+import { type ScreenSize, Data } from './type/types';
 
 function App() {
   const [screenSize, setScreenSize] = useState<ScreenSize>('small');

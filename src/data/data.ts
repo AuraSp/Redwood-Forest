@@ -1,4 +1,4 @@
-import { Data } from "../types/types";
+import { Data } from "../type/types";
 
 export const contentData: Data[] = [
     {

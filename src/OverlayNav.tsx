@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { contentData } from './data/data';
 import { FaLocationDot } from "react-icons/fa6";
-import { Data, OverlayNavProps } from './types/types';
+import { Data, type OverlayNavProps } from './type/types';
 import Map from '/images/map/nav.svg?raw'
 
 import './assets/styles/overlays.scss';

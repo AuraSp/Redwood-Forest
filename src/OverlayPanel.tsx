@@ -1,7 +1,7 @@
 import './assets/styles/overlays.scss';
 import { FaTwitter, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { SiVitest, SiTypescript, SiPnpm, SiThreedotjs, SiSass, SiReact } from "react-icons/si";
-import { OverlayPanelProps } from './types/types';
+import { type OverlayPanelProps } from './type/types';
 
 function OverlayPanel({ onClose }: OverlayPanelProps) {
     return (
