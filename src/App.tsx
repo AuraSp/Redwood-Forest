@@ -58,7 +58,7 @@ function App() {
 
   return (
     <>
-       <div className='preloader' style={{
+      {/* <div className='preloader' style={{
         background: `rgba(37, 37, 37, ${(100 - progress) / 100})`,
         "--opacity": progress === 100 ? 0 : 1,
       } as React.CSSProperties}>
@@ -66,9 +66,9 @@ function App() {
           "--height": `${progress}%`, 
         } as React.CSSProperties}></div>
         <span>{progress}%</span>
-      </div >
+      </div > */}
 
-      <Fog setProgress={setProgress} progress={progress} /> 
+      {/* <Fog setProgress={setProgress} progress={progress} />  */}
       {/* TOP CHILD ROW */}
       <TopRow onContentChoose={handleContentChoose} screenSize={screenSize} />
 

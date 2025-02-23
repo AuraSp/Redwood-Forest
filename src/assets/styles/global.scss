@@ -23,13 +23,13 @@ body,
 html {
   width: $width-full;
   height: $height-full;
-  min-height: 100svh;
+  max-height: 100svh;
 
   -webkit-text-size-adjust: 100%;
 }
 
 body {
-  @extend %background;
+  // @extend %background;
   background: var(--body-bg-image, url("/images/default.png")) no-repeat center center / cover;
 
   padding: rem(75) rem(85);
@@ -136,7 +136,7 @@ body {
 .fogoverlay p {
   text-align: center;
   width: clamp(25rem, 70vw, 80rem);
-  font-size: clamp(0.5rem, 2.5vw, 1.8rem);
+  font-size: clamp(1rem, 2.5vw, 1.8rem);
   line-height: 1.2;
   letter-spacing: 2px;
   font-family: $font-third;
@@ -206,10 +206,11 @@ body {
   padding: 10px 20px;
   background: none;
   border: 2px solid;
-  font-size: clamp(0.5rem, 2.5vw, 1.5rem);
+  color-scheme: light dark;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
   border-radius: 15px;
   position: relative;
-  top: 15%;
+  top: 10%;
   cursor: pointer;
 }
 

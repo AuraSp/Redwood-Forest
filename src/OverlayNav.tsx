@@ -64,7 +64,7 @@ function OverlayNav({ onClose, screenSize }: OverlayNavProps) {
                             onClick={() => handleSelect(data)}
                         >
                             <div className="card--front" >
-                                <img src={data.bgImg} alt="image" />
+                                <img src={data.bgImg} alt="image" loading="lazy"/>
                                 {!["medium", "small"].includes(screenSize) && (
                                     <>
                                         <div>{data.title}</div>

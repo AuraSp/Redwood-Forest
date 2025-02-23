@@ -6,6 +6,8 @@
     list-style: none;
     text-decoration: none;
     border: $border-width-zero;
+    -webkit-tap-highlight-color: transparent;
+    color-scheme: light dark;
 }
 
 %background {
@@ -25,8 +27,8 @@
 }
 
 %toprow-button-styles-before {
-    width: rem(40);
-    height: rem(40);
+    width: rem(41.6);
+    height: rem(41.6);
     content: '';
     top: 50%;
     left: 50%;

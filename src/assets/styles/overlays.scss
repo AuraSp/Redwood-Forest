@@ -183,11 +183,13 @@
 
         /* .card-back */
         .card--back {
-            transform: rotateY(180deg) translate3d(0, 0, 25px) perspective(100px);
+            transform: rotateY(180deg) translate3d(0, 0, 50px);
             z-index: 1;
             text-align: center;
             background: #06030c;
-            padding: 10px;
+            padding: 20px;
+            will-change: transform;
+            perspective: 1000px;
         }
 
         img {
@@ -266,11 +268,10 @@
 
     &--map {
         height: 100%;
-        margin-left: 20px;
+        margin-left: 50px;
 
         svg {
             height: 100%;
-            margin: 0 auto;
         }
 
 
@@ -380,7 +381,7 @@
                     font-family: $font-primary;
                     font-weight: none;
 
-                    // text-transform: capitalize;
+                    text-transform: capitalize;
                 }
 
                 span {
