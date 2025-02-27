@@ -361,7 +361,7 @@ body {
           @include positions(fixed);
           @include displays(block);
 
-          font-size: fonts.$font-size-medium;
+          font-size: fonts.$font-size-small;
           transform: rotate(-90deg);
           -webkit-transform: rotate(-90deg);
           -ms-transform: rotate(-90deg);

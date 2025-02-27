@@ -21,7 +21,7 @@
     .header {
         @include flex(flex, row, nowrap, space-between, center);
 
-        .overlay-title{
+        .overlay-title {
             // font-size: fonts.$font-size-large;
             font-family: fonts.$font-third;
             font-weight: bold;
@@ -89,7 +89,7 @@
 
                 div {
                     @include positions(absolute);
-                    
+
                     width: variables.$width-full;
                     text-transform: capitalize;
 
@@ -179,19 +179,20 @@
                 @include displays(block);
 
                 font-size: calc(fonts.$font-size-large + .55rem);
-                padding-bottom: addSpacing(variables.$spacing-none, .55);
-                padding: 1rem 0;
+                font-family: fonts.$font-secondary;
+                padding: variables.$spacing-small variables.$spacing-none;
             }
 
             p {
-                font-size: calc(fonts.$font-size-small + .1rem);
+                font-size: fonts.$font-size-small;
             }
 
             .share-button {
                 padding: addSpacing(variables.$spacing-medium, 1) variables.$spacing-none addSpacing(variables.$spacing-small, .5);
-                font-size: calc(fonts.$font-size-large + .05rem);
+                font-size: calc(fonts.$font-size-large + .5rem);
+                font-family: fonts.$font-secondary;
+                font-weight: normal;
                 line-height: 0.9em;
-                font-weight: 400;
             }
 
             .share-icons {
@@ -222,7 +223,8 @@
                     @include displays(block);
 
                     padding: addSpacing(variables.$spacing-medium, 1) variables.$spacing-none addSpacing(variables.$spacing-small, .5);
-                    font-size: calc(fonts.$font-size-large + .05rem);
+                    font-size: calc(fonts.$font-size-large + .5rem);
+                    font-family: fonts.$font-secondary;
                 }
 
 
