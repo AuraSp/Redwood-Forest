@@ -90,6 +90,7 @@ function OverlayNav({ onClose, screenSize }: OverlayNavProps) {
                 </div>
 
                 <div className="selection__container--map" ref={svgContainerRef}></div>
+
             </div>
         </div>
     );

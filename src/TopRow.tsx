@@ -41,39 +41,32 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
     return (
         <div className={`row__top ${screenSize}`}>
 
-            {/*  if screenSize !== small  */}
-            {['large', 'medium'].includes(screenSize) ? (
-                <>
-                    <div className="top__row--sound">
-                        <button className={`sound-btn ${isPlaying ? 'paused' : ''}`} onClick={toggleTrack}>
-                            {/* live sound btn */}
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </button>
-                    </div>
-                    {/* audio element */}
-                    <audio ref={audioRef} src={new URL('/audio/ambient.mp3', import.meta.url).href} />
-                </>
-            ) : (
-                <>
-                    {/* else use content for small screens  */}
-                    < div className="top__row--sound">
-                        <button className='option-btn' onClick={openPanelOverlay}>
-                            <PiGearFill />
-                        </button>
-                    </div>
+            <div  style={{ display: ['large', 'medium'].includes(screenSize) ? 'block' : 'none', }}
+            className="top__row--sound">
+                <button
+                    className={`sound-btn ${isPlaying ? 'paused' : ''}`} onClick={toggleTrack}>
+                    {/* live sound btn */}
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            {/* audio element */}
+            <audio ref={audioRef} src={new URL('/audio/ambient.mp3', import.meta.url).href} />
 
-                    {/* panel overlay section for smaller screens only! */}
-                    {overlayPanelVisible && (
-                        <OverlayPanel
-                            onClose={closePanelOverlay}
-                        />
-                    )}
-                </>
+            < div className="top__row--sound">
+                <button className='option-btn' onClick={openPanelOverlay}>
+                    <PiGearFill />
+                </button>
+            </div>
 
-            )
-            }
+            {/* panel overlay section for smaller screens only! */}
+            {overlayPanelVisible && (
+                <OverlayPanel
+                    onClose={closePanelOverlay}
+                />
+            )}
+           
 
 
             <div className="top__row--nav">

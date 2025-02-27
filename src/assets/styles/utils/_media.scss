@@ -361,7 +361,6 @@ body {
           @include positions(fixed);
           @include displays(block);
 
-          font-size: fonts.$font-size-small;
           transform: rotate(-90deg);
           -webkit-transform: rotate(-90deg);
           -ms-transform: rotate(-90deg);
@@ -494,6 +493,13 @@ body {
     }
 
     &.small {
+
+      .header {
+        .overlay-title{
+          font-size: fonts.$font-size-small;
+        }
+      }
+
       .selection__container {
         height: calc(variables.$height-half + 20%);
       }

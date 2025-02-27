@@ -22,7 +22,7 @@
         @include flex(flex, row, nowrap, space-between, center);
 
         .overlay-title {
-            // font-size: fonts.$font-size-large;
+            font-size: fonts.$font-size-large;
             font-family: fonts.$font-third;
             font-weight: bold;
         }
@@ -279,4 +279,10 @@
     font-size: calc(fonts.$font-size-medium + .15rem);
     width: variables.$width-full;
     height: variables.$height-full;
+}
+
+.aboutbtn{
+    position:fixed;
+    left: 0;
+
 }
