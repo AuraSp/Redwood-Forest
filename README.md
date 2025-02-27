@@ -1,6 +1,6 @@
 <a name="wiki-top"></a>
 <p align="center">
-<a href='https://github.com/AuraSp/Redwood-Forest/' target="_blank"><img src='https://github.com/AuraSp/Redwood-Forest/blob/main/public/logo.png' width='300' height='300' alt='App logo' /></a>
+<a href='https://github.com/AuraSp/Redwood-Forest/' target="_blank"><img src='https://github.com/AuraSp/Redwood-Forest/blob/main/public/logo.png' width='300' height='280' alt='App logo' /></a>
 </p>
 <h3 align='center'>Redwood Forest</h3>
 
