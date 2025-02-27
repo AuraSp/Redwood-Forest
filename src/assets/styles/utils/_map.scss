@@ -25,6 +25,9 @@ $loader-data: (
     background: url("./images/fog belt/fog_belt.png") no-repeat left -150px / cover,
     clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 75% 100%, 0% 100%),
     transform: translate(-20%, 20%),
+    -webkit-transform: translate(-20%, 20%), 
+    -moz-transform: translate(-20%, 20%),
+    -ms-transform: translate(-20%, 20%),
     before-transform: translate(-35%, -5%),
   ),
   "mount peak": (
@@ -34,12 +37,18 @@ $loader-data: (
     after-content: "ain",
     after-bg: none,
     before-transform: translate(-20%, -10%),
+    -webkit-transform: translate(-20%, -10%),
+    -moz-transform: translate(-20%, -10%),
+    -ms-transform: translate(-20%, -10%),
   ),
   "two ways": (
     height: 75%,
     background: url("/images/two ways/two_ways.png") no-repeat -500px top / cover,
     clip-path: polygon(0% 0%, 70% 0%, 90% 70%, 100% 100%, 0% 100%),
     transform: translate(-20%, 20%),
+    -webkit-transform: translate(-20%, 20%),
+    -moz-transform: translate(-20%, 20%),   
+    -ms-transform: translate(-20%, 20%),  
     before-transform: translate(-40%, 10%),
   ),
   "tallest tree": (
@@ -47,5 +56,8 @@ $loader-data: (
     background: url("./images/tallest tree/tallest_tree.png") no-repeat -400px -100px / cover,
     clip-path: polygon(0% 0%, 100% 0%, 95% 10%, 75% 100%, 0% 100%),
     before-transform: translate(-10%, -10%),
+    -webkit-transform: translate(-10%, -10%),
+    -moz-transform: translate(-10%, -10%), 
+    -ms-transform: translate(-10%, -10%), 
   )
 );

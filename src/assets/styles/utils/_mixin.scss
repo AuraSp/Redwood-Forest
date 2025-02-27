@@ -61,10 +61,15 @@
           -webkit-background-clip: text;
           background-clip: text;
           transform: map-get(map-get($loader-data, $title), transform);
+          -webkit-transform: map-get(map-get($loader-data, $title), transform);
+          -ms-transform: map-get(map-get($loader-data, $title), transform);
   
           &:before {
             clip-path: map-get(map-get($loader-data, $title), clip-path);
+            -webkit-clip-path: map-get(map-get($loader-data, $title), clip-path);
             transform: map-get(map-get($loader-data, $title), before-transform);
+            -webkit-transform: map-get(map-get($loader-data, $title), before-transform);
+            -ms-transform: map-get(map-get($loader-data, $title), before-transform);
           }
   
           @if map-has-key(map-get($loader-data, $title), after-content) {

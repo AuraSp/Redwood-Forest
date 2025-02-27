@@ -70,6 +70,7 @@
                 overflow: hidden;
 
                 backface-visibility: hidden;
+                -webkit-backface-visibility: hidden;
             }
 
             // card-front
@@ -115,12 +116,14 @@
                 padding: variables.$spacing-small;
                 will-change: transform;
                 perspective: 1000px;
+                -webkit-perspective: 1000px;
             }
 
             img {
                 height: variables.$height-full;
                 border-radius: 24px;
                 filter: brightness(60%);
+                -webkit-filter: brightness(60%);
             }
 
 

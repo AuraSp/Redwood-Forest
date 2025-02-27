@@ -35,6 +35,7 @@ body,
 body {
   padding: rem(75) rem(85);
   backdrop-filter: blur(rem(variables.$blur-strong));
+  -webkit-backdrop-filter: blur(rem(variables.$blur-strong));
 }
 
 #root {
@@ -57,8 +58,10 @@ body {
     width: variables.$width-half;
 
     clip-path: polygon(0px 0px, 65% 0%, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0px 0px, 65% 0%, 100% 100%, 0% 100%);
     background-color: var(--bg-blur-color);
     backdrop-filter: blur(1.25rem);
+    -webkit-backdrop-filter: blur(1.25rem);
 
     z-index: variables.$z-index-background;
   }
@@ -70,16 +73,22 @@ body {
 
 .row__top {
   @include flex-basis(0, 0, 10%);
+  -webkit-box-ordinal-group: 2;
+  -ms-flex-order: 1;
   order: 1;
 }
 
 .row__middle {
   @include flex-basis(1, 1, 0); //flex:1
+  -webkit-box-ordinal-group: 3;
+  -ms-flex-order: 2;
   order: 2;
 }
 
 .row__bottom {
   @include flex-basis(0, 0, 40%);
+  -webkit-box-ordinal-group: 4;
+  -ms-flex-order: 3;
   order: 3;
 }
 

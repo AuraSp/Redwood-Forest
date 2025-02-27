@@ -47,6 +47,7 @@
 
         &::before {
             clip-path: polygon(0% 50%, 50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%);
+            -webkit-clip-path: polygon(0% 50%, 50% 50%, 50% 0%, 100% 0%, 100% 100%, 0% 100%);
         }
 
         .sound-btn {
@@ -60,10 +61,12 @@
                 // Staggered animation delays for nth-of-type elements
                 &:nth-of-type(2) {
                     animation-delay: -1s;
+                    -webkit-animation-delay: -1s;
                 }
 
                 &:nth-of-type(3) {
                     animation-delay: -2s;
+                    -webkit-animation-delay: -2s;
                 }
 
                 // Specific styles for the first and last spans
@@ -82,33 +85,71 @@
             svg {
                 color: var(--primary-color);
                 filter: contrast(.8);
+                -webkit-filter: contrast(.8);
             }
+        }
+    }
+
+    @-webkit-keyframes bounce {
+        10% {
+            -webkit-transform: scaleY(0.3);
+                    transform: scaleY(0.3);
+            /* start by scaling to 30% */
+        }
+
+        30% {
+            -webkit-transform: scaleY(0.8);
+                    transform: scaleY(0.8);
+            /* scale up to 80% */
+        }
+
+        60% {
+            -webkit-transform: scaleY(0.4);
+                    transform: scaleY(0.4);
+            /* scale down to 40% */
+        }
+
+        80% {
+            -webkit-transform: scaleY(0.75);
+                    transform: scaleY(0.75);
+            /* scale up to 75% */
+        }
+
+        100% {
+            -webkit-transform: scaleY(0.6);
+                    transform: scaleY(0.6);
+            /* scale down to 60% */
         }
     }
 
     @keyframes bounce {
         10% {
-            transform: scaleY(0.3);
+            -webkit-transform: scaleY(0.3);
+                    transform: scaleY(0.3);
             /* start by scaling to 30% */
         }
 
         30% {
-            transform: scaleY(0.8);
+            -webkit-transform: scaleY(0.8);
+                    transform: scaleY(0.8);
             /* scale up to 80% */
         }
 
         60% {
-            transform: scaleY(0.4);
+            -webkit-transform: scaleY(0.4);
+                    transform: scaleY(0.4);
             /* scale down to 40% */
         }
 
         80% {
-            transform: scaleY(0.75);
+            -webkit-transform: scaleY(0.75);
+                    transform: scaleY(0.75);
             /* scale up to 75% */
         }
 
         100% {
-            transform: scaleY(0.6);
+            -webkit-transform: scaleY(0.6);
+                    transform: scaleY(0.6);
             /* scale down to 60% */
         }
     }
@@ -118,11 +159,13 @@
 
         &::before {
             clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
+            -webkit-clip-path: polygon(0% 0%, 50% 0%, 50% 50%, 100% 50%, 100% 100%, 0% 100%);
         }
 
         svg {
             color: var(--primary-color);
             filter: contrast(.8);
+            -webkit-filter: contrast(.8);
         }
     }
 }

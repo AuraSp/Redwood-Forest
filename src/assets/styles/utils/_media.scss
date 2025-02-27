@@ -9,6 +9,7 @@ body {
   &.small,
   &.medium {
     padding: variables.$spacing-none;
+    -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
 
@@ -27,6 +28,7 @@ body {
       bottom: 0;
 
       clip-path: none;
+      -webkit-clip-path: none;
     }
 
     &[root-bg-position='fog belt'],
@@ -47,6 +49,8 @@ body {
     &[root-bg-position='tallest tree'] {
       &:after {
         transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        -ms-transform: scaleX(-1);
       }
     }
   }
@@ -56,14 +60,18 @@ body {
 
     &.small {
       order: 2; // Change order for smaller screens
+      -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+      order: 2;
       text-align: center;
+      -ms-flex-line-pack: center;
       align-content: center;
       padding: variables.$spacing-none;
 
       .top__row--sound,
       .top__row--nav {
         @include displays(inline-block);
-        
+
         float: none;
       }
     }
@@ -92,6 +100,8 @@ body {
           font-size: fonts.$font-size-medium;
           text-transform: capitalize;
           transition: none;
+          -webkit-transition: none;
+          -o-transition: none;
 
           &.title-top {
 
@@ -102,7 +112,10 @@ body {
               border: calc(variables.$border-width-small + .5px) solid var(--secondary-color);
               -webkit-clip-path: none;
               clip-path: none;
+              -webkit-clip-path: none;
               transform: none;
+              -webkit-transform: none;
+              -ms-transform: none;
             }
           }
 
@@ -110,6 +123,8 @@ body {
             @include positions(relative);
 
             transform: rotate(-90deg);
+            -webkit-transform: rotate(-90deg);
+            -ms-transform: rotate(-90deg);
           }
         }
       }
@@ -148,6 +163,8 @@ body {
           color: var(--secondary-color);
           top: 50%;
           transform: translate(30%, 0%) rotate(-90deg);
+          -webkit-transform: translate(30%, 0%) rotate(-90deg);
+          -ms-transform: translate(30%, 0%) rotate(-90deg);
 
 
           &:before {
@@ -160,6 +177,8 @@ body {
           color: var(--secondary-color);
           top: 25%;
           transform: translate(25%, 0%) rotate(-90deg);
+          -webkit-transform: translate(25%, 0%) rotate(-90deg);
+          -ms-transform: translate(25%, 0%) rotate(-90deg);
         }
       }
 
@@ -169,6 +188,8 @@ body {
           color: var(--secondary-color);
           top: 50%;
           transform: translate(0%, 40%) rotate(-90deg);
+          -webkit-transform: translate(0%, 40%) rotate(-90deg);
+          -ms-transform: translate(0%, 40%) rotate(-90deg);
 
 
           &:before {
@@ -186,6 +207,8 @@ body {
           color: var(--secondary-color);
           top: 15%;
           transform: translate(15%, 0%) rotate(-90deg);
+          -webkit-transform: translate(15%, 0%) rotate(-90deg);
+          -ms-transform: translate(15%, 0%) rotate(-90deg);
         }
       }
 
@@ -202,6 +225,8 @@ body {
         .title-bottom {
           color: var(--primary-color);
           transform: translate(10%, 0%) rotate(-90deg);
+          -webkit-transform: translate(10%, 0%) rotate(-90deg);
+          -ms-transform: translate(10%, 0%) rotate(-90deg);
         }
       }
 
@@ -210,6 +235,8 @@ body {
         .title-bottom {
           top: 25%;
           transform: translate(25%, 0%) rotate(-90deg);
+          -webkit-transform: translate(25%, 0%) rotate(-90deg);
+          -ms-transform: translate(25%, 0%) rotate(-90deg);
         }
       }
     }
@@ -217,6 +244,8 @@ body {
     //for small sizes only
     &.small {
       order: 1; // Change order for smaller screens
+      -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
 
       .middle__row--social-links {
         padding: variables.$spacing-none;
@@ -274,6 +303,8 @@ body {
     &.medium {
       iframe {
         transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
       }
     }
 
@@ -323,6 +354,8 @@ body {
 
       .header {
         justify-content: flex-end;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
 
         .overlay-title {
           @include positions(fixed);
@@ -330,10 +363,16 @@ body {
 
           font-size: fonts.$font-size-medium;
           transform: rotate(-90deg);
+          -webkit-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
           left: 0;
           top: 50%;
           transform: translateY(50%) rotate(-90deg);
+          -webkit-transform: translateY(50%) rotate(-90deg);
+          -ms-transform: translateY(50%) rotate(-90deg);
           transform-origin: left;
+          -webkit-transform-origin: left;
+          -ms-transform-origin: left;
           margin-left: addSpacing(variables.$spacing-small, .5rem);
           height: fit-content;
           width: fit-content;
@@ -342,6 +381,9 @@ body {
 
       .selection__container {
         flex-direction: row-reverse;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: reverse;
+        -ms-flex-direction: row-reverse;
         height: calc(variables.$height-half + 20%);
 
       }
@@ -351,6 +393,7 @@ body {
         @include positions(static);
 
         perspective: none;
+        -webkit-perspective: none;
 
         .card {
           width: rem(50);
@@ -359,8 +402,13 @@ body {
           margin-block: addSpacing(variables.$spacing-small, .25rem);
           margin-inline: addSpacing(variables.$spacing-medium, 1.125rem);
           transform-style: unset;
+          -webkit-transform-style: unset;
           transition: none;
+          -webkit-transition: none;
+          -o-transition: none;
           transform: none;
+          -webkit-transform: none;
+          -ms-transform: none;
           outline: rem(2) solid transparent;
 
           &:hover,
@@ -375,9 +423,9 @@ body {
             width: variables.$width-full;
             height: variables.$height-full;
             object-fit: cover;
+            -o-object-fit: cover;
             filter: none;
-
-
+            -webkit-filter: none;
           }
         }
 
@@ -387,6 +435,8 @@ body {
           left: 50%;
           bottom: 0;
           transform: translateX(-50%);
+          -webkit-transform: translateX(-50%);
+          -ms-transform: translateX(-50%);
           text-align: center;
           width: variables.$width-full;
           font-weight: none;

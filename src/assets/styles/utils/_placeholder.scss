@@ -7,6 +7,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     list-style: none;
     text-decoration: none;
     border: variables.$border-width-zero;
@@ -15,23 +16,21 @@
 }
 
 %background {
-    @include background(no-repeat, center, cover);
+    @include background(no-repeat, center, contain);
 }
 
-%background-default-image{
+%background-default-image {
     background: var(--body-bg-image, url("/images/default.png"));
 }
 
 %toprow-buttons-container-styles {
     @include flex(flex, unset, nowrap, center, unset);
     @include positions(relative);
-
+    @include vertical-alignment(middle);
 
     width: rem(25);
     aspect-ratio: 1;
     margin-inline: variables.$spacing-small;
-
-    vertical-align: middle;
 }
 
 %toprow-button-styles-before {
@@ -43,6 +42,9 @@
     border: calc(variables.$border-width-medium + rem(1)) solid #ccc;
     border-radius: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     z-index: 0;
 }
 
@@ -55,12 +57,21 @@
 
     border-radius: rem(3);
     transform-origin: bottom;
+    -webkit-transform-origin: bottom;
+    -moz-transform-origin: bottom;
+    -ms-transform-origin: bottom;
     transition: all 1s ease-in-out;
+    -webkit-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
     animation: bounce 2.2s linear infinite alternate;
+    -webkit-animation: bounce 2.2s linear infinite alternate;
 }
 
 %svg-icon-styles {
     height: auto;
     width: variables.$width-full;
     object-fit: contain;
+    -webkit-object-fit: contain;
+    -moz-object-fit: contain;
+    -o-object-fit: contain;
 }

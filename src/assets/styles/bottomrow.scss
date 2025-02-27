@@ -13,6 +13,7 @@
         color: var(--accent-color);
         overflow-y: scroll;
         scroll-snap-type: y mandatory; //scroll snapping along the vertical axis
+        -ms-scroll-snap-type: y mandatory;
         height: variables.$height-full;
         scrollbar-width: none;
 
@@ -23,7 +24,11 @@
             text-align: center;
             height: auto;
             bottom: 10%;
+            -webkit-transition: opacity 300ms linear, -webkit-transform 1s cubic-bezier(0.25, 1.5, 0.2, 1.8);
+            transition: opacity 300ms linear, -webkit-transform 1s cubic-bezier(0.25, 1.5, 0.2, 1.8);
+            -o-transition: transform 1s cubic-bezier(0.25, 1.5, 0.2, 1.8), opacity 300ms linear;
             transition: transform 1s cubic-bezier(0.25, 1.5, 0.2, 1.8), opacity 300ms linear;
+            transition: transform 1s cubic-bezier(0.25, 1.5, 0.2, 1.8), opacity 300ms linear, -webkit-transform 1s cubic-bezier(0.25, 1.5, 0.2, 1.8);
         }
 
         svg {
@@ -54,6 +59,7 @@
         width: calc(variables.$width-half + 10%);
         height: auto;
         object-fit: cover;
+        -o-object-fit: cover;
         border-radius: 30px;
     }
 
