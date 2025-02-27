@@ -39,7 +39,7 @@
                 border-radius: 20px;
                 transform: translate(0%, 0%);
                 -webkit-transform: translate(0%, 0%);
-                    -ms-transform: translate(0%, 0%);
+                -ms-transform: translate(0%, 0%);
                 transition: all 1s linear;
                 -webkit-transition: all 1s linear;
                 -o-transition: all 1s linear;
@@ -91,6 +91,10 @@
 
     .middle__row--title {
         @include flex-basis(1, 1, 0);
+        @include loader-title("fog belt");
+        @include loader-title("mount peak");
+        @include loader-title("two ways");
+        @include loader-title("tallest tree");
 
         overflow: hidden;
         text-align: center;
@@ -146,104 +150,3 @@
     @include loader-title("two ways");
     @include loader-title("tallest tree");
 }
-    //     .middle__row--loader[data-title="fog belt"] {
-    //         .loader-line {
-    //             &::before {
-    //                 height: calc(variables.$height-half - 25%);
-    //             }
-    //         }
-    //     }
-
-    //     .middle__row--loader[data-title="mount peak"] {
-    //         .loader-line {
-    //             &::before {
-    //                 height: variables.$height-half;
-    //             }
-    //         }
-    //     }
-
-    //     .middle__row--loader[data-title="two ways"] {
-    //         .loader-line {
-    //             &::before {
-    //                 height: calc(variables.$height-half + 25%);
-    //             }
-    //         }
-    //     }
-
-    //     .middle__row--loader[data-title="tallest tree"] {
-    //         .loader-line {
-    //             &::before {
-    //                 height: variables.$height-full;
-    //             }
-    //         }
-    //     }
-
-    //     .middle__row--title[data-title="fog belt"] {
-
-    //         .title-top {
-    //             background: url("/images/fog belt/fog_belt.png") no-repeat left -150px / cover;
-    //             -webkit-background-clip: text;
-    //             background-clip: text;
-    //             transform: translate(-20%, 20%);
-
-    //             &:before {
-    //                 clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 75% 100%, 0% 100%);
-    //                 transform: translate(-35%, -5%);
-
-    //             }
-    //         }
-    //     }
-
-    //     .middle__row--title[data-title="mount peak"] {
-
-
-    //         .title-top {
-    //             background: url("/images/mountain peak/mountain_peak.png") no-repeat 100% / cover;
-    //             -webkit-background-clip: text;
-    //             background-clip: text;
-
-    //             &:before {
-    //                 clip-path: polygon(0% 0%, 100% 0%, 100% 25%, 70% 100%, 0% 100%);
-    //                 transform: translate(-20%, -10%);
-    //             }
-
-    //             &:after {
-    //                 content: "ain";
-    //                 @include positions(absolute);
-    //                 background: none;
-    //                 -webkit-background-clip: unset;
-    //                 background-clip: unset;
-    //                 mix-blend-mode: unset;
-    //                 color: var(--accent-color);
-    //             }
-    //         }
-    //     }
-
-    //     .middle__row--title[data-title="two ways"] {
-
-
-    //         .title-top {
-    //             background: url("/images/two ways/two_ways.png") no-repeat -500px top / cover;
-    //             -webkit-background-clip: text;
-    //             background-clip: text;
-    //             transform: translate(-20%, 20%);
-
-    //             &:before {
-    //                 clip-path: polygon(0% 0%, 70% 0%, 90% 70%, 100% 100%, 0% 100%);
-    //                 transform: translate(-40%, 10%);
-    //             }
-    //         }
-    //     }
-
-    //     .middle__row--title[data-title="tallest tree"] {
-
-    //         .title-top {
-    //             background: url("/images/tallest tree/tallest_tree.png") no-repeat -400px -100px / cover;
-    //             -webkit-background-clip: text;
-    //             background-clip: text;
-    //         }
-
-    //         .title-top::before {
-    //             clip-path: polygon(0% 0%, 100% 0%, 95% 10%, 75% 100%, 0% 100%);
-    //             transform: translate(-10%, -10%);
-    //         }

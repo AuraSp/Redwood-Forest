@@ -21,6 +21,12 @@
     .header {
         @include flex(flex, row, nowrap, space-between, center);
 
+        .overlay-title{
+            // font-size: fonts.$font-size-large;
+            font-family: fonts.$font-third;
+            font-weight: bold;
+        }
+
         .overlay-close-button button {
             background: none;
 
@@ -174,6 +180,7 @@
 
                 font-size: calc(fonts.$font-size-large + .55rem);
                 padding-bottom: addSpacing(variables.$spacing-none, .55);
+                padding: 1rem 0;
             }
 
             p {

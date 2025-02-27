@@ -2,89 +2,93 @@
 @use 'map' as*;
 
 @mixin background($repeat, $position, $size) {
-    background-repeat: $repeat;
-    background-position: $position;
-    background-size: $size;
+  background-repeat: $repeat;
+  background-position: $position;
+  background-size: $size;
 }
 
 @mixin flex($display, $direction, $wrap, $justify, $align) {
-    display: $display;
-    flex-direction: $direction;
-    flex-wrap: $wrap;
-    justify-content: $justify;
-    align-items: $align;
+  display: $display;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
 }
 
 @mixin flex-basis($grow, $shrink, $basis) {
-    flex: $grow $shrink $basis;
+  flex: $grow $shrink $basis;
 }
 
 @mixin clamped-width($min-width, $viewport-percentage, $max-width) {
-    width: clamp($min-width, $viewport-percentage, $max-width);
+  width: clamp($min-width, $viewport-percentage, $max-width);
 }
+
 @mixin clamped-font($min-width, $viewport-percentage, $max-width) {
-    font-size: clamp($min-width, $viewport-percentage, $max-width);
+  font-size: clamp($min-width, $viewport-percentage, $max-width);
 }
 
 @mixin positions($position) {
-    position: $position
+  position: $position
 }
 
 @mixin displays($display) {
-    display: $display;
+  display: $display;
 }
 
 @mixin vertical-alignment($vertical-align) {
-    vertical-align: $vertical-align;
+  vertical-align: $vertical-align;
 }
 
 @mixin set-absolute-positioning($top, $left, $bottom, $right) {
-    content: '';
-    top: $top;
-    left: $left;
-    bottom: $bottom;
-    right: $right;
+  content: '';
+  top: $top;
+  left: $left;
+  bottom: $bottom;
+  right: $right;
 }
 
 @mixin loader-title($title) {
-    .middle__row--loader[data-title="#{$title}"] {
-        .loader-line {
-          &::before {
-            height: map-get(map-get($loader-data, $title), height);
-          }
-        }
+  .middle__row--loader[data-title="#{$title}"] {
+    .loader-line {
+      &::before {
+        height: map-get(map-get($loader-data, $title), height);
       }
-  
-      .middle__row--title[data-title="#{$title}"] {
-        .title-top {
-          background: map-get(map-get($loader-data, $title), background);
-          -webkit-background-clip: text;
-          background-clip: text;
-          transform: map-get(map-get($loader-data, $title), transform);
-          -webkit-transform: map-get(map-get($loader-data, $title), transform);
-          -ms-transform: map-get(map-get($loader-data, $title), transform);
-  
-          &:before {
-            clip-path: map-get(map-get($loader-data, $title), clip-path);
-            -webkit-clip-path: map-get(map-get($loader-data, $title), clip-path);
-            transform: map-get(map-get($loader-data, $title), before-transform);
-            -webkit-transform: map-get(map-get($loader-data, $title), before-transform);
-            -ms-transform: map-get(map-get($loader-data, $title), before-transform);
-          }
-  
-          @if map-has-key(map-get($loader-data, $title), after-content) {
-            &:after {
-              content: map-get(map-get($loader-data, $title), after-content);
-              @include positions(absolute);
-              background: map-get(map-get($loader-data, $title), after-bg);
-              -webkit-background-clip: unset;
-              background-clip: unset;
-              mix-blend-mode: unset;
-              color: var(--accent-color);
-             
-            }
-          }
-        }
-      }
-}
+    }
+  }
 
+  .middle__row--title[data-title="#{$title}"] {
+    background: map-get(map-get($loader-data, $title), background);
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    .title-top {
+      background: map-get(map-get($loader-data, $title), background);
+      -webkit-background-clip: text;
+      background-clip: text;
+      transform: map-get(map-get($loader-data, $title), transform);
+      -webkit-transform: map-get(map-get($loader-data, $title), transform);
+      -ms-transform: map-get(map-get($loader-data, $title), transform);
+
+      &:before {
+        clip-path: map-get(map-get($loader-data, $title), clip-path);
+        -webkit-clip-path: map-get(map-get($loader-data, $title), clip-path);
+        transform: map-get(map-get($loader-data, $title), before-transform);
+        -webkit-transform: map-get(map-get($loader-data, $title), before-transform);
+        -ms-transform: map-get(map-get($loader-data, $title), before-transform);
+      }
+
+      @if map-has-key(map-get($loader-data, $title), after-content) {
+        &:after {
+          content: map-get(map-get($loader-data, $title), after-content);
+          @include positions(absolute);
+          background: map-get(map-get($loader-data, $title), after-bg);
+          -webkit-background-clip: unset;
+          background-clip: unset;
+          mix-blend-mode: unset;
+          color: var(--accent-color);
+
+        }
+      }
+    }
+  }
+}

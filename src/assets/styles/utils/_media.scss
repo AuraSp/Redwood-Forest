@@ -495,7 +495,7 @@ body {
 
     &.small {
       .selection__container {
-        height: calc(variables.$height-full + 20%);
+        height: calc(variables.$height-half + 20%);
       }
 
       .card--back-sm {
