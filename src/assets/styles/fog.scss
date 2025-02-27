@@ -1,0 +1,161 @@
+@use "./utils/function" as*;
+@use "./utils/map" as*;
+@use './utils/mixin' as *;
+
+@use "./utils/variables";
+@use "../fonts/fonts";
+
+#threejs,
+.preloader {
+    @include positions(fixed);
+
+    top: 0;
+    left: 0;
+    width: variables.$width-full;
+    height: variables.$height-full;
+}
+
+#threejs {
+    overflow: hidden;
+    z-index: variables.$z-layer-medium;
+    transition: opacity 1s linear;
+
+    .fogoverlay {
+        @include positions(absolute);
+        @include flex(flex, column, nowrap, center, center);
+
+        top: 2%; //for text fade-in animation
+        left: 0;
+        width: variables.$width-full;
+        height: 100vh;
+
+        color: var(--accent-color);
+        font-size: calc(fonts.$font-size-small + .2rem);
+        z-index: variables.$z-layer-medium;
+        opacity: 0;
+        transition:
+            opacity 1.2s ease-in-out 1.2s,
+            top 1.2s ease-in-out 1.2s;
+
+        &.visible {
+            opacity: 1;
+            top: 0;
+        }
+
+        p {
+            @include clamped-width(25rem, 70vw, 80rem);
+            @include clamped-font(1rem, 2.5vw, 1.8rem);
+
+            text-align: center;
+            line-height: 1.2;
+            letter-spacing: rem(2);
+            font-family: fonts.$font-third;
+            padding: variables.$spacing-none variables.$spacing-small;
+        }
+
+        .fogbutton {
+            @include positions(relative);
+
+            color: var(--primary-color);
+            height: rem(60);
+            width: rem(60);
+            background: none;
+            border: variables.$border-width-medium solid;
+            color-scheme: light dark;
+            border-radius: 50%;
+            top: 10%;
+            cursor: pointer;
+
+            svg {
+                @include vertical-alignment(middle);
+                @include clamped-font(1.2rem, 2.8vw, 2.5rem);
+
+                box-shadow: 0 0 0 rgba(0, 0, 0, 1);
+                animation: anim-vibrate 2s infinite;
+                border-radius: 50%;
+            }
+        }
+
+        @keyframes anim-vibrate {
+            0% {
+                box-shadow: 0 0 0 0;
+            }
+
+            70% {
+                box-shadow: 0 0 0 1.2rem rgba(0, 0, 0, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+            }
+        }
+
+
+    }
+
+}
+
+
+.preloader {
+    @include flex(flex, row, nowrap, center, center);
+
+    background: rgba(37, 37, 37, var(--opacity));
+    text-align: center;
+    z-index: variables.$z-layer-high;
+
+    transition:
+        opacity 1.8s ease-in-out,
+        visibility 2s ease-in-out;
+
+    opacity: var(--opacity);
+    visibility: visible;
+
+    .line {
+        @include positions(absolute);
+
+        left: 0;
+        top: 0;
+        width: rem(6);
+        height: variables.$height-full;
+        background-color: var(--secondary-color);
+
+        &::before {
+            @include positions(absolute);
+
+            content: "";
+            height: var(--height, 0);
+            top: 0;
+            left: 0;
+            background-color: var(--primary-color);
+            width: rem(6);
+            transform: translate(0%, 0%);
+            transition: height 0s linear;
+        }
+    }
+
+    &[style*="--opacity: 0"] {
+        visibility: hidden;
+        /* Hide the preloader when opacity is 0 */
+    }
+
+    span {
+        @include displays(block);
+
+        font-size: calc(fonts.$font-size-large + 1rem);
+        font-weight: bold;
+        color: var(--accent-color);
+    }
+
+}
+
+
+#threejs[data-hidden="true"],
+.fogoverlay[data-hidden="true"] {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#threejs[data-gone="true"],
+.fogoverlay[data-gone="true"] {
+    @include displays(none);
+}

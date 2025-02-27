@@ -1,8 +1,13 @@
 import { useEffect, useRef } from 'react';
+import { FogProps, FogUniforms } from './type/types';
+
 import * as THREE from 'three';
 import vertexShader from './data/vertexShader.glsl';
 import fragmentShader from './data/fragmentShader.glsl';
-import { FogProps, FogUniforms } from './type/types';
+
+import { MdKeyboardArrowDown } from "react-icons/md";
+import './assets/styles/fog.scss';
+
 
 function debounce(func: (...args: any[]) => void, delay: number) {
   // timeoutId stores a reference to the setTimeout function
@@ -45,7 +50,7 @@ function Fog({ progress, setProgress }: FogProps) {
     }, 40);
 
     return () => clearInterval(loadingInterval);
-  }, [progress, setProgress]);
+  }, [progress]);
 
 
 
@@ -80,7 +85,7 @@ function Fog({ progress, setProgress }: FogProps) {
 
 
 
-
+  // THREE.JS implementation
   useEffect(() => {
     const startTime = performance.now();
     console.log("Canvas initialization started");
@@ -141,8 +146,8 @@ function Fog({ progress, setProgress }: FogProps) {
   return (
     <div id='threejs' ref={mountRef}>
       <div className={`fogoverlay ${progress == 100 ? 'visible' : ''}`} ref={overlayRef}>
-        <p>There are secrets in these forests - trees that reach over 380 feet, older than anything we know, kept hidden to protect these giants from us and preserve their fragile ecosystems.The mysteries of these ancient giants, hidden within the mist and surrounded by rugged terrain, spark wonder about how such monumental trees continue to thrive in these remote, protected spaces.</p>
-        <button className='fogbutton' onClick={startFadeOut}>Continue</button>
+        <p>There are secrets in these forests - trees that reach over 380 feet, older than anything we know, kept hidden to protect these giants from us and preserve their fragile ecosystems. The mysteries of these ancient giants, hidden within the mist and surrounded by rugged terrain, spark wonder about how such monumental trees continue to thrive in these remote, protected spaces.</p>
+        <button className='fogbutton' onClick={startFadeOut}><MdKeyboardArrowDown /></button>
       </div>
     </div>
   )

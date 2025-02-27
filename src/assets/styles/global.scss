@@ -1,19 +1,16 @@
-@import "./utils/variables";
-@import "./utils/mixin";
-@import "./utils/function";
-@import "./utils/placeholder";
+@use "./utils/mixin" as *;
+@use "./utils/function" as *;
+@use "./utils/placeholder" as *;
 
-@import "./utils/colors";
-@import "../fonts/fonts";
+@use "./utils/variables";
+@use "./utils/colors";
+@use "../fonts/fonts";
 
 // Global Resets
 * {
   @extend %css-reset;
 
-  &:after {
-    @extend %css-reset;
-  }
-
+  &:after,
   &:before {
     @extend %css-reset;
   }
@@ -21,60 +18,53 @@
 
 body,
 html {
-  width: $width-full;
-  height: $height-full;
-  max-height: 100svh;
+  width: variables.$width-full;
+  height: variables.$height-full;
+  min-height: variables.$min-heigth;
 
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  // @extend %background;
-  background: var(--body-bg-image, url("/images/default.png")) no-repeat center center / cover;
+body,
+#root,
+#root:after {
+  @extend %background;
+  @extend %background-default-image;
+}
 
+body {
   padding: rem(75) rem(85);
-  backdrop-filter: blur(rem($blur-strong));
+  backdrop-filter: blur(rem(variables.$blur-strong));
 }
 
 #root {
-  @extend %background;
   @include flex(flex, column, nowrap, unset, unset);
   @include positions(relative);
 
-  width: $width-full;
-  height: $height-full;
+  width: variables.$width-full;
+  height: variables.$height-full;
 
-  z-index: 0;
+  z-index: variables.$z-base;
+
+  &:before,
+  &:after {
+    @include positions(absolute);
+    @include set-absolute-positioning(0, 0, 0, 0);
+  }
 
   &::before {
-    @include positions(absolute);
-
-    content: "";
-    height: $height-full;
-    width: $width-half;
-    top: 0;
-    left: 0;
+    height: variables.$height-full;
+    width: variables.$width-half;
 
     clip-path: polygon(0px 0px, 65% 0%, 100% 100%, 0% 100%);
     background-color: var(--bg-blur-color);
-    // backdrop-filter: blur(rem($blur-strong));
     backdrop-filter: blur(1.25rem);
-    // background-color: rgba(255, 255, 255, 0.3);
 
-    z-index: -1;
+    z-index: variables.$z-index-background;
   }
 
   &:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--root-bg-image, url("/images/default.png"));
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -2;
+    z-index: calc(variables.$z-index-background - 1);
   }
 }
 
@@ -94,138 +84,7 @@ body {
 }
 
 .bottom__row--description {
-  @include clamped-font-width;
+  @include clamped-width(450px, 26vw, 500px);
 
-  margin-left: addSpacing($spacing-large, 4);
+  margin-left: addSpacing(variables.$spacing-large, 4);
 }
-
-#threejs {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  z-index: 3;
-}
-
-.fogoverlay {
-  position: absolute;
-  top: 2%;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  font-size: 1.2rem;
-  z-index: 3;
-  opacity: 0;
-  transition:
-    opacity 1.2s ease-in-out 1.2s,
-    top 1.2s ease-in-out 1.2s;
-}
-
-.fogoverlay.visible {
-  opacity: 1;
-  top: 0;
-}
-
-.fogoverlay p {
-  text-align: center;
-  width: clamp(25rem, 70vw, 80rem);
-  font-size: clamp(1rem, 2.5vw, 1.8rem);
-  line-height: 1.2;
-  letter-spacing: 2px;
-  font-family: $font-third;
-  padding: 0 1rem;
-}
-
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: rgba(37, 37, 37, var(--opacity));
-  text-align: center;
-  z-index: 4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition:
-    opacity 1.8s ease-in-out,
-    visibility 2s ease-in-out;
-
-  opacity: var(--opacity);
-  visibility: visible;
-}
-
-.preloader[style*="--opacity: 0"] {
-  visibility: hidden; /* Hide the preloader when opacity is 0 */
-}
-
-.preloader span {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: #fff;
-  // animation: fadeIn 2s ease-out;
-  display: inline-block;
-  // width: 6rem;
-  // aspect-ratio: 1;
-  // padding: calc(100% / 4) 0 calc(100% / 4) 0;
-  // position: absolute;
-}
-
-.line {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 6px;
-  height: 100%;
-  background-color: #1b3654;
-
-  &::before {
-    height: var(--height, 0);
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #ffc190;
-    width: 6px;
-    transform: translate(0%, 0%);
-    transition: height 0s linear;
-  }
-}
-
-.fogbutton {
-  color: #fff;
-  padding: 10px 20px;
-  background: none;
-  border: 2px solid;
-  color-scheme: light dark;
-  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
-  border-radius: 15px;
-  position: relative;
-  top: 10%;
-  cursor: pointer;
-}
-
-#threejs {
-  transition: opacity 1s linear; 
-}
-
-#threejs[data-hidden="true"],
-.fogoverlay[data-hidden="true"] {
-  opacity: 0;
-  pointer-events: none; 
-}
-
-#threejs[data-gone="true"],
-.fogoverlay[data-gone="true"] {
-  display: none; 
-}
-

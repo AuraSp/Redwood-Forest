@@ -1,14 +1,18 @@
-import './assets/styles/overlays.scss';
-import { FaTwitter, FaLinkedin, FaEnvelope } from "react-icons/fa";
-import { SiVitest, SiTypescript, SiPnpm, SiThreedotjs, SiSass, SiReact } from "react-icons/si";
 import { type OverlayPanelProps } from './type/types';
 
+import { FaTwitter, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { SiVitest, SiTypescript, SiPnpm, SiThreedotjs, SiSass, SiReact } from "react-icons/si";
+
+import './assets/styles/overlays.scss';
+
+
 function OverlayPanel({ onClose }: OverlayPanelProps) {
+    
     return (
         <div className="overlay panel">
             <div className="header">
-                <span className='h22'>- Redwood Forest</span>
-                <div className='button'>
+                <span className='overlay-title'>- Redwood Forest</span>
+                <div className='overlay-close-button'>
                     <button onClick={() => onClose()}>&#x2715;</button>
                 </div>
             </div>
@@ -21,8 +25,8 @@ function OverlayPanel({ onClose }: OverlayPanelProps) {
                         omnis harum expedita eveniet facere perferendis corrupti consectetur, facilis iste repellendus enim odio beatae? Vel, quasi? Et, ipsa.
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     </p>
-                    <h3>Share</h3>
-                    <div>
+                    <h3 className='share-button'>Share</h3>
+                    <div className='share-icons'>
                         <FaLinkedin role="button" onClick={() => window.open("https://www.linkedin.com/sharing/share-offsite/?url=https://example.com", "_blank")} />
 
                         <FaTwitter role="button" onClick={() => window.open("https://twitter.com/intent/tweet?text=Check this out: https://example.com", "_blank")} />

@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
-import { FaLocationDot } from "react-icons/fa6";
-import { PiGearFill } from "react-icons/pi";
-import {  Data, TopRowProps } from './type/types';
 
-import './assets/styles/toprow.scss';
+import { Data, TopRowProps } from './type/types';
+
 import OverlayNav from './OverlayNav';
 import OverlayPanel from './OverlayPanel';
+
+import { FaLocationDot } from "react-icons/fa6";
+import { PiGearFill } from "react-icons/pi";
+import './assets/styles/toprow.scss';
 
 
 function TopRow({ screenSize, onContentChoose }: TopRowProps) {
@@ -13,11 +15,12 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
     const audioRef = useRef<HTMLAudioElement | null>(null);
     const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
-    const [overlayNavVisible, setOverlayNavVisible] = useState(false);
-    const [overlayPanelVisible, setOverlayPanelVisible] = useState(false);
+    const [overlayNavVisible, setOverlayNavVisible] = useState<boolean>(false);
+    const [overlayPanelVisible, setOverlayPanelVisible] = useState<boolean>(false);
 
     const openNavOverlay = () => setOverlayNavVisible(true), openPanelOverlay = () => setOverlayPanelVisible(true);
     const closeNavOverlay = () => setOverlayNavVisible(false), closePanelOverlay = () => setOverlayPanelVisible(false);
+
 
     const handleContentSelect = (content: Data | null) => {
         if (content) onContentChoose(content);
@@ -28,17 +31,10 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
     const toggleTrack = () => {
         if (audioRef.current) {
             audioRef.current.volume = 0.5;
-            if (isPlaying) {
-                // Pause the audio if it is currently playing
-                audioRef.current.pause();
-            } else {
-                // Play the audio if it is currently paused
-                audioRef.current.play();
-            }
+            isPlaying ? audioRef.current.pause : audioRef.current.play();
 
             setIsPlaying(!isPlaying);
         };
-
     }
 
 
@@ -61,16 +57,16 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
                 </>
             ) : (
                 <>
-                    {/* /* else use content for small screens  */}
+                    {/* else use content for small screens  */}
                     < div className="top__row--sound">
                         <button className='option-btn' onClick={openPanelOverlay}>
                             <PiGearFill />
                         </button>
                     </div>
 
+                    {/* panel overlay section for smaller screens only! */}
                     {overlayPanelVisible && (
                         <OverlayPanel
-                            // simple overlay
                             onClose={closePanelOverlay}
                         />
                     )}
@@ -89,10 +85,6 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
 
             {overlayNavVisible && (
                 <OverlayNav
-                    // onClose={(content) => {
-                    //     if (content) onContentChoose(content);
-                    //     closeOverlay();
-                    // }}
                     onClose={handleContentSelect}
                     screenSize={screenSize}
                 />

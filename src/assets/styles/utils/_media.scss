@@ -1,12 +1,14 @@
-@import './mixin';
-@import './variables';
-@import './function';
+@use 'mixin' as *;
+@use 'function' as *;
+
+@use 'variables';
+@use "../../fonts/fonts.scss";
 
 body {
 
   &.small,
   &.medium {
-    padding: 0;
+    padding: variables.$spacing-none;
     backdrop-filter: none;
   }
 
@@ -18,18 +20,14 @@ body {
   &.medium {
 
     &:before {
-      height: $height-half;
-      width: $width-full;
+      height: variables.$height-half;
+      width: variables.$width-full;
 
       top: unset;
       bottom: 0;
 
       clip-path: none;
     }
-
-    // &:after {
-    //   background-position-y: -100px;
-    // }
 
     &[root-bg-position='fog belt'],
     &[root-bg-position='mount peak'],
@@ -60,19 +58,20 @@ body {
       order: 2; // Change order for smaller screens
       text-align: center;
       align-content: center;
-      padding: 0;
+      padding: variables.$spacing-none;
 
       .top__row--sound,
       .top__row--nav {
-        float: none;
         @include displays(inline-block);
+        
+        float: none;
       }
     }
   }
 
   // middle row section
   .row__middle {
-    position: static;
+    @include positions(static);
 
     //for both sizes
     &.small,
@@ -85,22 +84,22 @@ body {
         background: none;
 
         .title {
-          display: block;
+          @include displays(block);
+
           height: fit-content;
           width: fit-content;
           left: 0;
-          font-size: 20px;
+          font-size: fonts.$font-size-medium;
           text-transform: capitalize;
           transition: none;
-          // color-scheme: light dark;
 
           &.title-top {
 
             &:before {
-              width: 25px;
+              width: rem(25);
               border-radius: 0;
               height: 0;
-              border: 1.5px solid #1B3654;
+              border: calc(variables.$border-width-small + .5px) solid var(--secondary-color);
               -webkit-clip-path: none;
               clip-path: none;
               transform: none;
@@ -108,26 +107,28 @@ body {
           }
 
           &.title-bottom {
-            position: relative;
-            // top: 25%;
+            @include positions(relative);
+
             transform: rotate(-90deg);
           }
         }
       }
 
       .middle__row--loader {
-        position: absolute;
+        @include positions(absolute);
+
         top: 0;
         left: 0;
-        width: 5%;
-        padding: 0;
+        width: rem(6);
+        padding: variables.$spacing-none;
         text-align: start;
-        height: 100%;
+        height: variables.$height-full;
 
         .loader-line {
-          height: 100%;
+          @include displays(block);
+
+          height: variables.$height-full;
           border-radius: 0;
-          display: block;
 
           &:before {
             border-radius: 0;
@@ -135,7 +136,7 @@ body {
         }
 
         span {
-          display: none
+          @include displays(none);
         }
       }
 
@@ -144,7 +145,7 @@ body {
       .middle__row--title[data-title='two ways'] {
 
         .title-top {
-          color: #1B3654;
+          color: var(--secondary-color);
           top: 50%;
           transform: translate(30%, 0%) rotate(-90deg);
 
@@ -156,7 +157,7 @@ body {
         }
 
         .title-bottom {
-          color: #1B3654;
+          color: var(--secondary-color);
           top: 25%;
           transform: translate(25%, 0%) rotate(-90deg);
         }
@@ -165,7 +166,7 @@ body {
       .middle__row--title[data-title='mount peak'],
       .middle__row--title[data-title='tallest tree'] {
         .title-top {
-          color: #1B3654;
+          color: var(--secondary-color);
           top: 50%;
           transform: translate(0%, 40%) rotate(-90deg);
 
@@ -177,12 +178,12 @@ body {
 
           &:after {
             text-transform: lowercase;
-            color: #1B3654;
+            color: var(--secondary-color);
           }
         }
 
         .title-bottom {
-          color: #1B3654;
+          color: var(--secondary-color);
           top: 15%;
           transform: translate(15%, 0%) rotate(-90deg);
         }
@@ -191,15 +192,15 @@ body {
       .middle__row--title[data-title='two ways'] {
 
         .title-top {
-          color: #ffc190;
+          color: var(--primary-color);
 
           &:before {
-            border-color: #ffc190;
+            border-color: var(--primary-color);
           }
         }
 
         .title-bottom {
-          color: #ffc190;
+          color: var(--primary-color);
           transform: translate(10%, 0%) rotate(-90deg);
         }
       }
@@ -218,11 +219,11 @@ body {
       order: 1; // Change order for smaller screens
 
       .middle__row--social-links {
-        padding: 0;
+        padding: variables.$spacing-none;
 
         &[data-title='tallest tree'] {
-          svg{
-            color: #ffc190;
+          svg {
+            color: var(--primary-color);
           }
         }
       }
@@ -231,7 +232,7 @@ body {
     //for medium size only
     &.medium {
       .middle__row--social-links {
-        padding: 0 2.5rem 0 0;
+        padding: variables.$spacing-none addSpacing(variables.$spacing-medium, .5) variables.$spacing-none variables.$spacing-none;
       }
     }
   }
@@ -244,28 +245,29 @@ body {
       @include flex-basis(1, 1, 50%);
 
       .bottom__row--description {
-        height: 100%;
+        height: variables.$height-full;
       }
 
       .description-top {
         span {
-          margin-top: 2.5rem;
-          display: inline-block;
+          @include displays(inline-block);
+
+          margin-top: addSpacing(variables.$spacing-medium, .5);
         }
       }
 
       .description-bottom {
         img {
-          margin-top: 2.5rem;
+          margin-top: addSpacing(variables.$spacing-medium, .5);
         }
       }
 
       span {
-        font-size: 40px;
+        font-size: calc(fonts.$font-size-large + 1rem);
       }
 
       p {
-        font-size: 24px;
+        font-size: fonts.$font-size-large;
       }
     }
 
@@ -278,37 +280,196 @@ body {
     &.small {
 
       iframe {
-        display: none;
+        @include displays(none);
       }
 
       .bottom__row--description {
-        margin: 0 auto;
+        margin: variables.$spacing-none auto;
         text-align: center;
       }
 
       .description-top {
         span {
-          display: inline-block;
+          @include displays(inline-block);
         }
       }
 
       p {
-        font-size: 22px;
+        @include displays(inline-block);
+
+        font-size: calc(fonts.$font-size-medium + 0.125rem);
         width: calc(100% - 10%);
-        display: inline-block;
       }
 
       .svgbox {
         left: 0;
-        width: 100%;
+        width: variables.$width-full;
 
 
         svg {
-          width: 2.5rem;
+          width: rem(40);
         }
       }
     }
 
 
+  }
+
+  //overlay sections
+  .overlay {
+
+    &.medium,
+    &.small {
+
+      .header {
+        justify-content: flex-end;
+
+        .overlay-title {
+          @include positions(fixed);
+          @include displays(block);
+
+          font-size: fonts.$font-size-medium;
+          transform: rotate(-90deg);
+          left: 0;
+          top: 50%;
+          transform: translateY(50%) rotate(-90deg);
+          transform-origin: left;
+          margin-left: addSpacing(variables.$spacing-small, .5rem);
+          height: fit-content;
+          width: fit-content;
+        }
+      }
+
+      .selection__container {
+        flex-direction: row-reverse;
+        height: calc(variables.$height-half + 20%);
+
+      }
+
+      .selection__container--list {
+        @include displays(inline-block);
+        @include positions(static);
+
+        perspective: none;
+
+        .card {
+          width: rem(50);
+          height: rem(50);
+          border-radius: 50%;
+          margin-block: addSpacing(variables.$spacing-small, .25rem);
+          margin-inline: addSpacing(variables.$spacing-medium, 1.125rem);
+          transform-style: unset;
+          transition: none;
+          transform: none;
+          outline: rem(2) solid transparent;
+
+          &:hover,
+          &:focus,
+          &:focus-within,
+          &:active {
+            outline: rem(2) solid var(--primary-color);
+          }
+
+
+          img {
+            width: variables.$width-full;
+            height: variables.$height-full;
+            object-fit: cover;
+            filter: none;
+
+
+          }
+        }
+
+        .card--back-sm {
+          @include positions(fixed);
+
+          left: 50%;
+          bottom: 0;
+          transform: translateX(-50%);
+          text-align: center;
+          width: variables.$width-full;
+          font-weight: none;
+          letter-spacing: rem(1);
+
+          h1 {
+            font-family: fonts.$font-primary;
+            font-weight: none;
+
+            text-transform: capitalize;
+          }
+
+          span {
+            @include displays(inline-block);
+
+            font-family: fonts.$font-third;
+            margin-block: addSpacing(variables.$spacing-small, .5rem);
+            font-size: fonts.$font-size-small;
+
+
+            svg {
+              @include vertical-alignment(middle);
+
+              fill: var(--primary-color);
+              margin-inline: addSpacing(variables.$spacing-none, .3125);
+              font-size: fonts.$font-size-large;
+            }
+          }
+
+          p {
+            font-family: fonts.$font-secondary;
+            font-size: fonts.$font-size-medium;
+            padding: variables.$spacing-none addSpacing(variables.$spacing-medium, .5);
+          }
+        }
+      }
+
+      .selection__container--map {
+        @include flex-basis(1, 1, 0);
+
+        text-align: center;
+
+        svg {
+          height: calc(variables.$height-full - 10%);
+        }
+
+
+      }
+    }
+
+    &.medium {
+      .card--back-sm {
+        height: rem(240);
+      }
+    }
+
+    &.small {
+      .selection__container {
+        height: calc(variables.$height-full + 20%);
+      }
+
+      .card--back-sm {
+        height: rem(300);
+      }
+
+
+
+      .selection__container--list .card {
+        width: rem(30);
+        height: rem(30);
+        margin-inline: variables.$spacing-none;
+      }
+
+      .selection__container--map {
+        @include flex-basis(1, 1, auto);
+
+        margin: variables.$spacing-none;
+        height: variables.$height-full;
+
+        svg {
+          height: calc(variables.$height-half + 20%);
+        }
+      }
+    }
   }
 }

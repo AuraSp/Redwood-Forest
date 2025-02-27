@@ -1,26 +1,24 @@
 import { useEffect, useState } from 'react';
+
+import { contentData } from "./data/data";
+import { ScreenSize, Data } from './type/types';
+
 import TopRow from "./TopRow";
 import MiddleRow from "./MiddleRow";
 import BottomRow from "./BottomRow";
 import Fog from "./Fog";
-import { contentData } from "./data/data";
-import { type ScreenSize, Data } from './type/types';
+
 
 function App() {
   const [screenSize, setScreenSize] = useState<ScreenSize>('small');
   const [chosenContent, setChosenContent] = useState<Data>(contentData[0]);
   const [progress, setProgress] = useState<number>(0);
 
+
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      if (width < 856) {
-        setScreenSize('small');
-      } else if (width >= 856 && width <= 1200) {
-        setScreenSize('medium');
-      } else {
-        setScreenSize('large');
-      }
+      setScreenSize(width < 856 ? 'small' : width <= 1200 ? 'medium' : 'large');
     };
 
     handleResize();
@@ -31,13 +29,15 @@ function App() {
     };
   }, []);
 
+
   const handleContentChoose = (content: Data | undefined) => {
-    if (content) {
+    if (content && content !== chosenContent) {
       setChosenContent(content);
     } else {
       console.error('No content selected');
-  }
+    }
   };
+
 
   useEffect(() => {
     const root = document.getElementById('root');
@@ -55,17 +55,22 @@ function App() {
 
   return (
     <>
-      <div className='preloader' style={{
-        background: `rgba(37, 37, 37, ${(100 - progress) / 100})`,
-        "--opacity": progress === 100 ? 0 : 1,
-      } as React.CSSProperties}>
+
+      {/* PRELOADER FOR CANVAS */}
+      <div className='preloader'
+        style={{
+          background: `rgba(37, 37, 37, ${(100 - progress) / 100})`,
+          "--opacity": progress === 100 ? 0 : 1,
+        } as React.CSSProperties}>
         <div className="line" style={{
-          "--height": `${progress}%`, 
+          "--height": `${progress}%`,
         } as React.CSSProperties}></div>
         <span>{progress}%</span>
       </div >
 
-      <Fog setProgress={setProgress} progress={progress} /> 
+      {/* FOG CHILD ROW */}
+      <Fog setProgress={setProgress} progress={progress} />
+
       {/* TOP CHILD ROW */}
       <TopRow onContentChoose={handleContentChoose} screenSize={screenSize} />
 

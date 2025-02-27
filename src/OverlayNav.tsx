@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+
 import { contentData } from './data/data';
-import { FaLocationDot } from "react-icons/fa6";
-import { Data, type OverlayNavProps } from './type/types';
+import { Data, OverlayNavProps } from './type/types';
+
 import Map from '/images/map/nav.svg?raw'
 
+import { FaLocationDot } from "react-icons/fa6";
 import './assets/styles/overlays.scss';
 
 
@@ -43,8 +45,8 @@ function OverlayNav({ onClose, screenSize }: OverlayNavProps) {
     return (
         <div className={`overlay ${screenSize}`}>
             <div className="header">
-                <span className="h22-l">- Choose location</span>
-                <div className="button">
+                <span className="overlay-title">- Choose location</span>
+                <div className="overlay-close-button">
                     <button onClick={handleClose}>&#x2715;</button>
                 </div>
             </div>
@@ -71,7 +73,7 @@ function OverlayNav({ onClose, screenSize }: OverlayNavProps) {
                                 )}
                             </div>
                             {!["medium", "small"].includes(screenSize) && (
-                                <div className="card--back">
+                                <div className="card--back-lg">
                                     <p>{data.description}</p>
                                 </div>
                             )}
@@ -79,7 +81,7 @@ function OverlayNav({ onClose, screenSize }: OverlayNavProps) {
                     ))}
 
                     {["medium", "small"].includes(screenSize) && (
-                        <div className="card--back-mq">
+                        <div className="card--back-sm">
                             <h1>{activeContent?.title.replace(/^mount/i, "mountain")}</h1>
                             <span>{activeContent && <FaLocationDot />} {activeContent?.coordinates}</span>
                             <p>{activeContent?.description}</p>

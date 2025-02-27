@@ -1,8 +1,11 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from 'framer-motion';
+
+import { BottomRowProps } from './type/types';
+
 import { CgMouse, CgScrollV } from "react-icons/cg";
 import './assets/styles/bottomrow.scss';
-import { useRef } from "react";
-import { type BottomRowProps } from './type/types';
-import { motion, useScroll, useTransform } from 'framer-motion';
+
 
 function BottomRow({ screenSize, chosenContent }: BottomRowProps) {
   const ref = useRef<HTMLDivElement>(null);

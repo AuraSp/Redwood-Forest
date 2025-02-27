@@ -1,695 +1,270 @@
-@import "./utils/function";
-@import "../fonts/fonts";
-@import "./utils/map";
+@use "./utils/function" as*;
+@use "./utils/map" as*;
+@use './utils/mixin' as *;
+
+@use "./utils/variables";
+@use "../fonts/fonts";
 
 .overlay {
-    // background-color: red;
-    position: fixed;
-    width: 100%;
-    height: 100%;
+    @include positions(fixed);
+    width: variables.$width-full;
+    height: variables.$height-full;
     top: 0;
     left: 0;
-    z-index: 1;
-    background-color: #252525;
-    color: #fff;
+    z-index: variables.$z-layer;
+    background-color: var(--overlay-bg-color);
+    color: var(--accent-color);
 
-    display: flex;
+    @include flex(flex, column, nowrap, unset, unset);
     overflow: hidden;
-    padding: rem(75) rem(85);
-}
 
-// .overlay__left-side {
-//     flex: 1;
-//     // padding: rem(50) 0 rem(50) rem(150);
+    .header {
+        @include flex(flex, row, nowrap, space-between, center);
 
-//     align-content: center;
-// }
-
-// .overlay__right-side {
-//     // padding: rem(50) rem(50);
-//     position: relative;
-//     flex: 1;
-//     height: 100%;
-
-//     align-self: center;
-//     text-align: center;
-// }
-
-// .overlay__right-side > div {
-//     height: 100%;
-//     display: inline-block;
-//     position: relative;
-// }
-
-.overlay .button {
-    position: absolute;
-    width: 100%;
-    padding-left: 50px;
-    text-align: start;
-    z-index: 1;
-}
-
-.overlay .button button {
-    background: none;
-    font-size: 2.4rem;
-    color: #fff;
-}
-
-// .overlay__left-side .prompt {
-//     font-size: 40px;
-//     font-family: "Righteous", sans-serif;
-//     padding-left: 200px;
-//     margin-bottom: 5rem;
-//     display: inline-block;
-// }
-
-// .overlay__left-side .map-description {
-//     width: fit-content;
-//     padding-left: 200px;
-//     height: 250px; //rem(250)
-
-//     div {
-//         text-transform: capitalize;
-//     }
-// }
-
-// .overlay__left-side .map-description div:first-of-type {
-//     font-size: 35px;
-//     font-family: "Righteous", sans-serif;
-// }
-
-// .overlay__left-side .map-description div:last-of-type {
-//     margin: 1.5rem 0 1.5rem 0;
-
-//     svg {
-//         font-size: 2rem;
-//         vertical-align: middle;
-//         margin-right: 0.5rem;
-//         color: #ff6f00;
-//     }
-// }
-
-// .overlay__left-side .map-description p {
-//     font-size: 25px;
-//     font-family: "Fresca", sans-serif;
-//     width: 490px;
-// }
-
-.selection__container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 85%;
-    // flex: 1;
-    width: auto;
-    // gap: 60px;
-
-    &--list {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        perspective: 1000px;
-        // flex: 1;
-        gap: 40px;
-
-        .card {
-
-            &:hover,
-            &:focus-within {
-                transform: rotateY(180deg) scale(1.1);
-            }
-
-            width: 230px;
-            height: 285px;
-            // margin-inline: 40px;
-            position: relative;
-            transform-style: preserve-3d;
-            transition: .6s .1s;
-            cursor: pointer;
-        }
-
-
-
-        .card--front,
-        .card--back {
-            width: 100%;
-            height: 100%;
-            border-radius: 30px;
-
-            // background: var(--dark);
-            position: absolute;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-
-            backface-visibility: hidden;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card--front {
-            transform: rotateY(0deg);
-            z-index: 1;
-            position: relative;
-            text-align: center;
-
-            div {
-                width: 100%;
-                position: absolute;
-                text-transform: capitalize;
-
-                &:first-of-type {
-                    top: 20px;
-                    font-size: 1.5rem;
-                    font-family: $font-primary;
-                }
-
-                &:last-of-type {
-                    bottom: 20px;
-                    font-family: $font-secondary;
-
-                    svg {
-                        font-size: 1.2rem;
-                    }
-                }
-            }
+        .overlay-close-button button {
+            background: none;
 
         }
+    }
 
+    .selection__container {
+        @include flex(flex, row, nowrap, center, center);
+        height: calc(variables.$height-full - 15%);
+        width: auto;
 
+        &--list {
+            @include flex(flex, row, wrap, center, center);
 
-        /* .card-back */
-        .card--back {
-            transform: rotateY(180deg) translate3d(0, 0, 50px);
-            z-index: 1;
-            text-align: center;
-            background: #06030c;
-            padding: 20px;
-            will-change: transform;
             perspective: 1000px;
-        }
-
-        img {
-            height: 100%;
-            border-radius: 24px;
-            filter: brightness(60%);
-            backdrop-filter: blur(2px);
-
-        }
-
-        // &:after {
-        //     content: "";
-        //     display: block;
-        //     width: 100%;
-        //     height: 100%;
-        //     // box-shadow: 0 0 120px rgba(0, 0, 0, 1) inset;
-        //     backdrop-filter: blur(.5px);
-        //     position: absolute;
-        //     top: 0;
-        //     left: 0;
-        //     border-radius: 28px;
-        // }
-
-        // &--image-box {
-        //     position: relative;
-        //     overflow: hidden;
-        //     text-align: center;
-        //     height: 80%;
-
-        //     &:after {
-        //         content: "";
-        //         display: block;
-        //         width: 100%;
-        //         height: 100%;
-        //         box-shadow: 0 0 120px rgba(0, 0, 0, 1) inset;
-        //         backdrop-filter: blur(.5px);
-        //         position: absolute;
-        //         top: 0;
-        //         left: 0;
-        //         border-radius: 28px;
-        //     }
-
-        //     img {
-        //         width: 100%;
-        //         height: 100%;
-        //         object-fit: cover;
-        //         border-radius: 30px;
-        //         display: block;
-        //     }
-
-        //     div {
-        //         width: 100%;
-        //         position: absolute;
-        //         z-index: 1;
-        //         text-transform: capitalize;
-
-        //         &:first-of-type {
-        //             top: 10px;
-        //             font-size: 1.5rem;
-        //             font-family: $font-primary;
-        //         }
-
-        //         &:last-of-type {
-        //             bottom: 10px;
-        //             font-family: $font-secondary;
-
-        //             svg {
-        //                 font-size: 1.2rem;
-        //             }
-        //         }
-        //     }
-
-        // }
-
-    }
-
-    &--map {
-        height: 100%;
-        margin-left: 50px;
-
-        svg {
-            height: 100%;
-        }
-
-
-    }
-
-    @each $feature, $styles in $svg-hover-styles {
-
-        // Hover effect when a card is hovered
-        .selection__container--list:has(.card[data-title="#{$feature}"]:hover)~.selection__container--map svg path[id="#{$feature}"],
-        .selection__container--list:has(.card[data-title="#{$feature}"]:focus)~.selection__container--map svg path[id="#{$feature}"],
-        .selection__container--list:has(.card[data-title="#{$feature}"]:focus-within)~.selection__container--map svg path[id="#{$feature}"],
-        .selection__container--list:has(.card[data-title="#{$feature}"]:active)~.selection__container--map svg path[id="#{$feature}"] {
-            @each $prop, $value in $styles {
-                #{$prop}: #{$value};
-            }
-        }
-    }
-
-}
-
-
-.overlay {
-
-    &.medium,
-    &.small {
-
-        .header {
-            justify-content: flex-end;
-
-            .h22-l {
-                position: fixed;
-                font-size: 20px;
-                transform: rotate(-90deg);
-                left: 0;
-                top: 50%;
-                transform: translateY(50%) rotate(-90deg);
-                transform-origin: left;
-                margin-left: 1.5rem;
-                display: block;
-                height: fit-content;
-                width: fit-content;
-            }
-        }
-
-        .selection__container {
-            flex-direction: row-reverse;
-            // position: unset;
-            // border: 1px solid;
-            height: 70%;
-
-        }
-
-        .selection__container--list {
-            display: inline-block;
-            // flex-direction: column;
-
-            position: unset;
-            // left: 50%;
-            // top: 50%;
-            // transform: translate(-50%, -50%);
-            // border: 1px solid;
-            // transform-origin: center;
-
-            perspective: unset;
-
+            gap: 40px;
 
             .card {
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                margin-block: 20px;
-                margin-inline: 50px;
-                transform-style: unset;
-                transition: none;
-                transform: none;
-                outline: 2px solid transparent;
 
                 &:hover,
-                &:focus,
-                &:focus-within,
-                &:active {
-                    outline: 2px solid orange;
+                &:focus-within {
+                    transform: rotateY(180deg) scale(1.1);
                 }
 
+                @include positions(relative);
 
-                img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    filter: none;
-
-
-                }
+                width: rem(230);
+                height: rem(285);
+                transform-style: preserve-3d;
+                transition: .6s .1s;
+                cursor: pointer;
             }
 
-            .card--back-mq {
-                position: fixed;
-                left: 50%;
-                bottom: 0;
-                transform: translateX(-50%);
+
+
+            .card--front,
+            .card--back-lg {
+                @include positions(absolute);
+                @include flex(flex, row, wrap, center, center);
+
+                width: variables.$width-full;
+                height: variables.$height-full;
+                border-radius: 30px;
+
+                top: 0;
+                left: 0;
+                overflow: hidden;
+
+                backface-visibility: hidden;
+            }
+
+            // card-front
+            .card--front {
+                @include positions(relative);
+
+                transform: rotateY(0deg);
+                z-index: variables.$z-layer;
                 text-align: center;
-                width: 100%;
-                font-weight: none;
-                letter-spacing: 1px;
 
-                h1 {
-                    font-family: $font-primary;
-                    font-weight: none;
-
+                div {
+                    @include positions(absolute);
+                    
+                    width: variables.$width-full;
                     text-transform: capitalize;
-                }
 
-                span {
-                    font-family: $font-third;
-                    margin-block: 1.5rem;
-                    font-size: 15px;
-                    display: inline-block;
+                    &:first-of-type {
+                        top: 20px;
+                        font-size: fonts.$font-size-large;
+                        font-family: fonts.$font-primary;
+                    }
 
+                    &:last-of-type {
+                        bottom: 20px;
+                        font-family: fonts.$font-secondary;
 
-                    svg {
-                        fill: orange;
-                        margin-inline: 5px;
-                        font-size: 1.5rem;
-                        vertical-align: middle;
+                        svg {
+                            font-size: calc(fonts.$font-size-small + .2rem);
+                        }
                     }
                 }
 
-                p {
-                    font-family: $font-secondary;
-                    font-size: 20px;
-                    font-weight: 100;
-                    padding: 0 40px;
+            }
+
+
+
+            //  .card-back
+            .card--back-lg {
+                transform: rotateY(180deg) translate3d(0, 0, 50px);
+                z-index: variables.$z-layer;
+                text-align: center;
+                background: var(--card-back-bg-color);
+                padding: variables.$spacing-small;
+                will-change: transform;
+                perspective: 1000px;
+            }
+
+            img {
+                height: variables.$height-full;
+                border-radius: 24px;
+                filter: brightness(60%);
+            }
+
+
+
+        }
+
+        &--map {
+            height: variables.$height-full;
+            margin-left: addSpacing(variables.$spacing-medium, 2);
+
+            svg {
+                height: variables.$height-full;
+            }
+
+
+        }
+
+        @each $feature, $styles in $svg-hover-styles {
+
+            // Hover effect when a card is hovered
+            .selection__container--list:has(.card[data-title="#{$feature}"]:hover)~.selection__container--map svg path[id="#{$feature}"],
+            .selection__container--list:has(.card[data-title="#{$feature}"]:focus)~.selection__container--map svg path[id="#{$feature}"],
+            .selection__container--list:has(.card[data-title="#{$feature}"]:focus-within)~.selection__container--map svg path[id="#{$feature}"],
+            .selection__container--list:has(.card[data-title="#{$feature}"]:active)~.selection__container--map svg path[id="#{$feature}"] {
+                @each $prop, $value in $styles {
+                    #{$prop}: #{$value};
                 }
             }
         }
 
-        .selection__container--map {
-            flex: 1;
-            text-align: center;
+    }
 
-            svg {
-                height: 90%;
+    .panel__content {
+        @include flex(flex, row, wrap, unset, center);
+        @include flex-basis(1, 1, 0);
+
+        text-align: start;
+
+        &--about,
+        &--credit {
+            @include flex-basis(1, 1, 50%);
+        }
+
+        &--about {
+
+            .heading {
+                @include displays(block);
+
+                font-size: calc(fonts.$font-size-large + .55rem);
+                padding-bottom: addSpacing(variables.$spacing-none, .55);
             }
 
+            p {
+                font-size: calc(fonts.$font-size-small + .1rem);
+            }
 
+            .share-button {
+                padding: addSpacing(variables.$spacing-medium, 1) variables.$spacing-none addSpacing(variables.$spacing-small, .5);
+                font-size: calc(fonts.$font-size-large + .05rem);
+                line-height: 0.9em;
+                font-weight: 400;
+            }
+
+            .share-icons {
+                height: rem(50);
+
+                svg {
+                    @include vertical-alignment(middle);
+
+                    width: rem(35);
+                    height: auto;
+                    object-fit: cover;
+                    color: var(--primary-color);
+                    transition: color 1s linear;
+                    cursor: pointer;
+                    margin: variables.$spacing-none addSpacing(variables.$spacing-none, .5);
+                }
+            }
         }
-    }
 
-    &.medium {
-        .card--back-mq {
-            height: 240px;
-        }
-    }
+        &--credit {
+            .tools {
+                width: variables.$width-full;
+                height: rem(250);
+                text-align: center;
+                padding: addSpacing(variables.$spacing-medium, 1) 0;
 
-    &.small {
-        .selection__container {
-            height: 70%;
-        }
+                .heading {
+                    @include displays(block);
 
-        .card--back-mq {
-            height: 300px;
-        }
+                    padding: addSpacing(variables.$spacing-medium, 1) variables.$spacing-none addSpacing(variables.$spacing-small, .5);
+                    font-size: calc(fonts.$font-size-large + .05rem);
+                }
 
 
+                @each $icon, $color in $tech-stack {
+                    svg[data-icon="#{$icon}"] {
+                        @include displays(inline-block);
 
-        .selection__container--list .card {
-            width: 30px;
-            height: 30px;
-            margin-inline: 0;
-        }
+                        fill: $color;
+                        font-size: calc(fonts.$font-size-large + .5rem);
+                        margin: addSpacing(variables.$spacing-none, .6) addSpacing(variables.$spacing-small, .5);
 
-        .selection__container--map {
-            margin: 0;
-            height: 100%;
-            flex: auto;
+                    }
+                }
+            }
 
-            svg {
-                height: 70%;
+            .inspiration {
+                width: variables.$width-full;
+                height: rem(250);
+                text-align: center;
+                padding-top: variables.$spacing-medium;
+
+                iframe {
+                    border-radius: 10px;
+                }
             }
         }
     }
-
-    // padding: 0;
-
-    // .prompt,
-    // .button {
-    //     padding: 0;
-    //     position: fixed;
-    // }
-
-    // .button {
-    //     text-align: end;
-    //     top: 0;
-    //     padding: 1rem;
-    // }
-
-    // .button button {
-    //     font-size: 2rem;
-    // }
-
-    // .prompt {
-    //     font-size: 20px;
-    //     transform: rotate(-90deg);
-    //     left: 0;
-    //     top: 40%;
-    //     transform-origin: left;
-    //     margin-left: 1.5rem;
-    //     text-transform: capitalize;
-    //     display: block;
-    //     height: fit-content;
-    //     width: fit-content;
-
-    //     &:before {
-    //         display: block;
-    //         position: absolute;
-    //         content: "";
-    //         width: 25px;
-    //         border-radius: 0;
-    //         top: 50%;
-    //         left: -25%;
-    //         height: 0;
-    //         border: 1.5px solid #fff;
-    //     }
-    // }
-
-    // .overlay__right-side {
-    //     height: 55%;
-
-    //     .ref-svg {
-    //         height: 85%;
-    //         top: 50%;
-    //         transform: translateY(-50%);
-    //     }
-
-
-
-    //     .button-nav {
-    //         width: 100%;
-    //         height: max-content;
-    //         display: inline-block;
-    //         padding-top: 4rem;
-
-    //         button {
-    //             display: inline-block;
-    //             width: 1.5rem;
-    //             height: 1.5rem;
-    //             background-color: transparent;
-    //             border: none;
-    //             border-radius: 50%;
-    //             background-repeat: no-repeat;
-    //             background-size: cover;
-    //             margin: 0 0.5rem;
-
-    //             // pointer-events: none;
-    //         }
-
-    //         button.hovered {
-    //             border: 1px solid #ff6f00;
-    //         }
-    //     }
-    // }
-
-    // .map-description {
-    //     padding: 0 0.5rem 0 0.5rem;
-    //     margin: 0;
-    //     height: 100%;
-    //     margin-top: 4rem;
-
-    //     div:first-of-type {
-    //         font-size: 30px;
-    //     }
-
-    //     p {
-    //         font-size: 20px;
-    //         width: 100%;
-    //     }
-    // }
-
 
 }
 
-
-
-
+//repeating styles
 .overlay.panel,
 .overlay {
     flex-direction: column;
-    padding: 2.5rem;
+    padding: addSpacing(variables.$spacing-medium, .5);
     overflow-y: auto;
     scrollbar-width: none;
 }
 
-.overlay.panel .button,
-.overlay .button {
+.overlay.panel .overlay-close-button,
+.overlay .overlay-close-button {
+    @include displays(inline-block);
+
     border-radius: 50%;
-    border: 2px solid var(--primary-color);
+    border: variables.$border-width-medium solid var(--primary-color);
     width: 3.2em;
     height: 3.2em;
-    padding: 0;
-    position: static;
-    display: inline-block;
 }
 
-.overlay.panel .button button,
-.overlay .button button {
-    font-size: 1.4rem;
-    width: 100%;
-    height: 100%;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-
-.h22-l {
-    font-size: 2rem;
-    font-family: $font-primary;
-}
-
-.panel__content {
-    display: flex;
-    flex-flow: wrap;
-    align-items: center;
-    text-align: start;
-    flex: 1;
-
-    &--about,
-    &--credit {
-        flex: 1 1 50%;
-    }
-
-    // &:has(.child:nth-child(n+3)){
-    //     text-align: center;
-    // }
-
-    &--about {
-        
-        .heading {
-            font-size: 2.05rem;
-            padding-bottom: max(16px, calc(8px + 1.25vw));
-            padding-bottom: 0.55em;
-            display: block;
-        }    
-        
-        p {
-            font-size: 18px;
-        }
-
-        h3 {
-            padding: 3.1rem 0 1.6rem;
-            font-size: 25px;
-            line-height: 0.9em;
-            font-weight: 400;
-        }
-
-        div {
-            height: 50px;
-
-            svg {
-                width: 35px;
-                height: auto;
-                object-fit: cover;
-                color: var(--primary-color);
-                transition: color 1s linear;
-                cursor: pointer;
-                vertical-align: middle;
-                margin: 0 0.4rem;
-            }
-        }
-    }
-
-    &--credit {
-        .tools {
-            width: 100%;
-            height: 250px;
-            text-align: center;
-            padding: 3rem 0 3rem;
-
-            .heading {
-                padding: 3.2rem 0 1.6rem;
-                font-size: 25px;
-                font-weight: 400;
-                display: block;
-            }
-
-            // div {
-            //     height: 40px;
-            //     width: 2em;
-            //     border: 1px solid yellow;
-            //     display: inline-block;
-            //     margin: 0 0.4rem;
-            // }
-
-            
-            @each $icon, $color in $tech-stack {
-                svg[data-icon="#{$icon}"] {
-                    fill: $color;
-                    font-size: 2rem;
-                    display: inline-block;
-                    margin: .6rem 1.5rem;
-
-                }
-            }
-        }
-
-        .inspiration {
-            width: 100%;
-            height: 250px;
-            text-align: center;
-            padding-top: 2rem;
-
-            iframe {
-                border-radius: 10px;
-            }
-        }
-    }
+.overlay.panel .overlay-close-button button,
+.overlay .overlay-close-button button {
+    font-size: calc(fonts.$font-size-medium + .15rem);
+    width: variables.$width-full;
+    height: variables.$height-full;
 }

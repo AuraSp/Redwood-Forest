@@ -1,3 +1,7 @@
+@use 'mixin' as *;
+@use "function" as *;
+
+@use 'variables';
 
 %css-reset {
     padding: 0;
@@ -5,13 +9,17 @@
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
-    border: $border-width-zero;
+    border: variables.$border-width-zero;
     -webkit-tap-highlight-color: transparent;
     color-scheme: light dark;
 }
 
 %background {
-    @include background( no-repeat, center, cover);
+    @include background(no-repeat, center, cover);
+}
+
+%background-default-image{
+    background: var(--body-bg-image, url("/images/default.png"));
 }
 
 %toprow-buttons-container-styles {
@@ -21,7 +29,7 @@
 
     width: rem(25);
     aspect-ratio: 1;
-    margin-inline: $spacing-small;
+    margin-inline: variables.$spacing-small;
 
     vertical-align: middle;
 }
@@ -32,7 +40,7 @@
     content: '';
     top: 50%;
     left: 50%;
-    border: calc($border-width-medium + rem(1)) solid #ccc;
+    border: calc(variables.$border-width-medium + rem(1)) solid #ccc;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     z-index: 0;
@@ -40,7 +48,7 @@
 
 %sound-bars-styles {
     width: rem(4.8);
-    height: calc($height-full - 10%);
+    height: calc(variables.$height-full - 10%);
 
     margin-inline: rem(1.5);
     vertical-align: middle;
@@ -53,6 +61,6 @@
 
 %svg-icon-styles {
     height: auto;
-    width: $width-full;
+    width: variables.$width-full;
     object-fit: contain;
 }
