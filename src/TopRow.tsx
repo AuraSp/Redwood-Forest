@@ -54,7 +54,7 @@ function TopRow({ screenSize, onContentChoose }: TopRowProps) {
             {/* audio element */}
             <audio ref={audioRef} src={new URL('/audio/ambient.mp3', import.meta.url).href} />
 
-            < div className="top__row--sound">
+            <div style={{ display: ['large', 'medium'].includes(screenSize) ? 'none' : '', }} className="top__row--sound">
                 <button className='option-btn' onClick={openPanelOverlay}>
                     <PiGearFill />
                 </button>
