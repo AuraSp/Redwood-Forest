@@ -17,4 +17,6 @@ By embedding the video via an iframe, the project provides a direct link to the 
 
 <br>
 
+<img src='https://i.imgur.com/4y5OFwg.png' type="image/png" width='400' height='auto' />\
+<i>Caption: Example screenshot of the application interface.</i>\
 You can read more in <a href='https://github.com/AuraSp/Redwood-Forest/wiki/1.Home'>Wiki</a>
